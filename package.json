@@ -3,7 +3,7 @@
   "name": "mastodon-search",
   "title": "Mastodon Search",
   "description": "Search for People or Hashtags on Mastodon.",
-  "icon": "command-icon.png",
+  "icon": "assets/command-icon.png",
   "author": "almatkai",
   "categories": [
     "Communication",
