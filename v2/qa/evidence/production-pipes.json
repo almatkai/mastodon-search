@@ -1,0 +1,23 @@
+{
+  "count": 16,
+  "checks": [
+    "packaged default People/empty model is a real SDK view",
+    "packaged kind A/B/A, separate native/client revisions",
+    "packaged stale control revision inert",
+    "packaged foreign-session controls inert",
+    "packaged nonstring draft is visible and effect-free",
+    "packaged oversized draft is visible",
+    "packaged invalid instance route fails locally without requests",
+    "packaged input-time draft acknowledges current client revision",
+    "packaged empty draft promotion does not fetch",
+    "packaged unsupported operation rejects",
+    "packaged unsupported operation rejects",
+    "packaged unknown effects are inert",
+    "packaged 128-session capacity explicit",
+    "packaged full applicable no-network suite emits no OS effect",
+    "packaged shutdown disposes 128 sessions",
+    "packaged EOF exits with live session"
+  ],
+  "scope": "genuine extracted executable, applicable no-network operations only; successful owned TLS and data/actions use separate QA helper",
+  "nativeAcceptance": "not-run"
+}

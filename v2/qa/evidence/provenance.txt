@@ -1,0 +1,1 @@
+V1 byte boundary, pinned immutable fixtures, exact icon and empty index verified

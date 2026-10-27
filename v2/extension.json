@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 3,
+  "id": "com.tezbar.native.mastodon-search",
+  "slug": "mastodon-search",
+  "name": "Mastodon Search",
+  "version": "2.0.0",
+  "description": "Search for People or Hashtags on Mastodon.",
+  "icon": "resources/command-icon.png",
+  "runtime": "rust",
+  "execution": "process",
+  "protocolVersion": 1,
+  "repository": "https://github.com/almatkai/mastodon-search",
+  "author": "almatkai; original by Dave Verwer and Toby Herbert",
+  "replaces": [
+    "com.tezbar.mastodon-search",
+    "raycast.mastodon-search"
+  ],
+  "platforms": [
+    "macOS",
+    "Windows"
+  ],
+  "commands": [
+    {
+      "name": "search",
+      "title": "Search Mastodon",
+      "description": "Search Mastodon for people or hashtags.",
+      "runtime": "rust",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "timeoutMs": 30000,
+      "concurrency": "serialize",
+      "refreshMs": null
+    }
+  ],
+  "preferences": [
+    {
+      "name": "instance",
+      "title": "Instance",
+      "description": "The Mastodon instance to search.",
+      "type": "textfield",
+      "required": true,
+      "default": "mastodon.social"
+    }
+  ],
+  "capabilities": [
+    "shell.open",
+    "clipboard.write"
+  ],
+  "artifacts": {},
+  "verification": [
+    {
+      "platform": "macOS",
+      "state": "not-run",
+      "note": "Intended platform; native installed-host acceptance has not run."
+    },
+    {
+      "platform": "Windows",
+      "state": "not-run",
+      "note": "Intended platform; native installed-host acceptance has not run."
+    }
+  ]
+}

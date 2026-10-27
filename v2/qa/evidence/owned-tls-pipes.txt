@@ -1,0 +1,71 @@
+ok 1 - genuine production TLS rejects untrusted owned CA
+ok 2 - direct adapter invalid preference revokes actual TLS body read before validation
+ok 3 - SDK hello/initialize/default empty search and exact dropdown
+ok 4 - trusted test-only transport gets exact source payload, duplicates/order/string IDs
+ok 5 - Visit Profile: concurrent duplicate is one view / one unchanged / one frozen effect
+ok 6 - Visit Profile: explicit repeat receives fresh action ID
+ok 7 - Copy Profile URL: concurrent duplicate is one view / one unchanged / one frozen effect
+ok 8 - Copy Profile URL: explicit repeat receives fresh action ID
+ok 9 - Copy Handle: concurrent duplicate is one view / one unchanged / one frozen effect
+ok 10 - Copy Handle: explicit repeat receives fresh action ID
+ok 11 - Visit Hashtag: concurrent duplicate is one view / one unchanged / one frozen effect
+ok 12 - Visit Hashtag: explicit repeat receives fresh action ID
+ok 13 - malformed acknowledgement exposes manual-only retry
+ok 14 - retry uses frozen text and no requery
+ok 15 - malformed acknowledgement exposes manual-only retry
+ok 16 - retry uses frozen text and no requery
+ok 17 - malformed acknowledgement exposes manual-only retry
+ok 18 - retry uses frozen text and no requery
+ok 19 - malformed acknowledgement exposes manual-only retry
+ok 20 - retry uses frozen text and no requery
+ok 21 - malformed acknowledgement exposes manual-only retry
+ok 22 - retry uses frozen text and no requery
+ok 23 - malformed acknowledgement exposes manual-only retry
+ok 24 - retry uses frozen text and no requery
+ok 25 - malformed acknowledgement exposes manual-only retry
+ok 26 - retry uses frozen text and no requery
+ok 27 - future/hidden effect tokens stay inert while an effect is pending
+ok 28 - HTTP completion cannot restore effect IDs or erase pending effect ownership
+ok 29 - manual effect retry survives crossed payload replacement and keeps old displayed text
+ok 30 - foreign/unknown action IDs are inert
+ok 31 - A/B/A uses exact cached B while loading
+ok 32 - failed refresh keeps previous payload, manual search retry, no auto retry
+ok 33 - refresh is effect-free and request-free
+ok 34 - manual search retry issues precisely one request
+ok 35 - revoked old data action remains inert after query revisions
+ok 36 - kind A/B/A retains ownership through failed HTTP
+ok 37 - invalid dropdown revokes first and leaves a visible draft error
+ok 38 - bad-json: visible bounded failure and retained rows
+ok 39 - bad-arrays: visible bounded failure and retained rows
+ok 40 - bad-types: visible bounded failure and retained rows
+ok 41 - bad-mime: visible bounded failure and retained rows
+ok 42 - oversized: visible bounded failure and retained rows
+ok 43 - too-many: visible bounded failure and retained rows
+ok 44 - deep: visible bounded failure and retained rows
+ok 45 - redirect: visible bounded failure and retained rows
+ok 46 - cross-origin: visible bounded failure and retained rows
+ok 47 - locked structured JSON MIME accepted
+ok 48 - real HTTP raw ampersand/plus/fragment/percent/space/tab/Unicode routes
+ok 49 - invalid input cancels actual active body read before validation
+ok 50 - invalid input cancels actual active body read before validation
+ok 51 - crossed old response cannot restore query/data
+ok 52 - empty query retains previous payload and executes nothing
+ok 53 - late effect ACK cannot restore old query/surface
+ok 54 - dispose releases active socket
+ok 55 - input-time draft revokes actual body read without starting replacement HTTP
+ok 56 - debounced promotion of same client revision fetches once
+ok 57 - rapid dropdown A/B/A from same displayed control preserves latest input revision
+ok 58 - stale dropdown input revision is inert unchanged
+ok 59 - native model revision and client input revision remain independent
+ok 60 - stale SDK search RPC cannot cancel newer scope-owned HTTP work
+ok 61 - 140 real SDK cancel/open races recover capacity (completed opens explicitly disposed)
+ok 62 - 128 live sessions accepted, 129th rejected explicitly
+ok 63 - unknown/unsupported operation load-more rejects
+ok 64 - unknown/unsupported operation made-up rejects
+ok 65 - shutdown with 128 sessions exits cleanly
+ok 66 - EOF aborts body read and scoped tasks
+ok 67 - malformed/oversized/truncated frame terminates boundedly
+ok 68 - malformed/oversized/truncated frame terminates boundedly
+ok 69 - malformed/oversized/truncated frame terminates boundedly
+ok 70 - malformed/oversized/truncated frame terminates boundedly
+ok 71 - malformed/oversized/truncated frame terminates boundedly

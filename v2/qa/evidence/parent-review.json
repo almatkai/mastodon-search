@@ -1,0 +1,28 @@
+{
+  "checkedAt": "2026-10-27T13:34:47.826038+00:00",
+  "parentReview": true,
+  "fullRunner": "python3 qa/run.py: all non-Windows gates passed; two explicit missing-MinGW blocks",
+  "rust": "9 tests per toolchain; stable and 1.85 fmt/strict Clippy",
+  "source": "Complete original source/locked bundle oracle; raw WHATWG URL/cache/action semantics reviewed",
+  "production": "fresh isolated HTTPS SDK build; actual extracted production rejects fixture CA; successful TLS/data/actions tested only by separate QA helper",
+  "package": {
+    "zipSha256": "fa9399c8f5b294cee184d42e4dbaf41ca212597718c2020f81d29c9dbe610e33",
+    "binarySha256": "7ae62412d86122ed73d5e628d4639f4e70aa18afea065bfabbc16ecf5901a0d7",
+    "closedMembers": 271,
+    "sourceFiles": {
+      "Cargo.toml": "4b5439ec843123eb7d310c8aaa3ca4e7366e52380a143867f0f241119a856390",
+      "Cargo.lock": "352aa26fbefbf3bab17f02f10d61af91fe107d954f2f8ffdf0f99224e8541393",
+      "src/core.rs": "5ac7044d00283c53631a493f1ca4143ee6fd81310665206f1bd87095ed3699ad",
+      "src/http.rs": "f57a66e83096f8ebae05a32b18f560827268ea6ae1d91dadc9ed6dfcab6068cc",
+      "src/lib.rs": "0ed6ff063950c3b89fc32589a445bd69d939bb76ea523be25a4bc3dd625b604c",
+      "src/main.rs": "2e4d7aae69a08299c75f8f7fb4e397b39b1ae07f18032bdc4ced8ef3e1b5c8c6"
+    }
+  },
+  "icon": {
+    "bytes": 59938,
+    "sha256": "cf8072956e54114ab4044849f5e5441577ec56676a942c9d8aced00648169c09",
+    "comparison": "parent fresh pinned original HTTP fetch == V1 == V2"
+  },
+  "limits": "Host prerequisite unapplied; real desktop/Windows MSVC acceptance not run; source artifacts empty; finite coverage; XERJ V2 indexing incomplete; two QA-only Raycast grant-text gaps documented",
+  "stagedAudit": "Parent will rehash all staged blobs against regenerated inventory before commit"
+}

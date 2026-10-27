@@ -1,0 +1,22 @@
+Mastodon Search V2
+
+Standalone Rust port of the own Mastodon Search repository at
+dd73024af23ed7d716421592aac26c323500206d.
+Original extension: Dave Verwer and Toby Herbert (MIT; LICENSE).
+Port repository: https://github.com/almatkai/mastodon-search
+
+The unmodified command icon is from raycast/extensions at
+6734d85992290066fd31a7f5bee3cca3d3545a1a,
+extensions/mastodon-search/assets/command-icon.png.
+SHA256 cf8072956e54114ab4044849f5e5441577ec56676a942c9d8aced00648169c09
+
+This binary uses tezbar-extension-sdk 0.1.1 at immutable HTTPS Git revision
+e955911f0bf5b558f9d3eb5183df0adc95c22af2 (Apache-2.0).
+Its license/notice and authentic third-party registry grants/notices are under
+resources/licenses in the development package and licenses in the source tree.
+Cargo.lock fixes every registry version and archive checksum. The source audit
+records the actual archive hashes and the copied notices; it is not legal approval.
+
+The SDK and HTTP/data dependencies are independent of the Tezbar host checkout.
+The development archive contains no JavaScript engine, QA helper, fixtures,
+custom CA, user data, dependency cache or runtime path into another checkout.

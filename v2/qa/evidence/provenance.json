@@ -1,0 +1,336 @@
+{
+  "selectedRoot": "/Users/almat/Desktop/code/Tezbar APP/rust-extension-ports/mastodon-search",
+  "branch": "feat/native-v2-rust",
+  "head": "dd73024af23ed7d716421592aac26c323500206d",
+  "remote": "https://github.com/almatkai/mastodon-search.git",
+  "indexEmpty": true,
+  "originalV1": {
+    ".eslintrc.json": "4ba4be7bd41dcd6b792eec134e7faa177988d2958ef1b1c91f93339f60a74ae1",
+    ".gitignore": "b027adcbb6131ef49be335e9a699657351ca3d5bb2b474379634d1714f5a585b",
+    ".prettierrc": "7e558c740d282cf16220c67d13b7c7ccd7ab0beef504769171c191929e323ead",
+    "CHANGELOG.md": "c659ab5f0fdac13b02433f45b5aa39fe0ade4ec9597a7e8e0dc78d1c7be91f38",
+    "LICENSE": "1d7dbdbcd4fe14dfa08334fab20bffad23c1290f195792a3a4420dadf9912f81",
+    "LICENSE.md": "02b9238d9451975483c0223d72ee90a665cea152854111c4532866a48fdf17da",
+    "README.md": "1b2ebfb1d9db111a1b469709c7ee46e3f01e277d8401d3a185e087c65f62ac61",
+    "assets/command-icon.png": "cf8072956e54114ab4044849f5e5441577ec56676a942c9d8aced00648169c09",
+    "metadata/metadata-1.png": "1f35837902f40b3c62e486ace6f8013a2d3a7fd7cb7a15d501a7742d0226ed4b",
+    "metadata/metadata-2.png": "ed6f8693c0db9b0c9a91d1219aa09b1a4cb63138f39d00a3bfa97f1ff10d2ec7",
+    "package-lock.json": "2180348b4e33fe653fd4a229a91ea469b48e6d9a2d4e5e468a42bc68dcd44cd6",
+    "package.json": "241128c943fbbe935313cc4a13346130e3ce19a9b855d4b2fbfc090f45ae2fac",
+    "raycast-env.d.ts": "337d4a0b2c9cdf74f77d88f87839461c608fb508b279e5dfe1a38fa8c4c701bd",
+    "src/models/mastodon_account.ts": "41c93878fc9e872b75f95020745c96689babd80e91ba96cc8859ff7d1eac26fb",
+    "src/models/mastodon_api_schema.ts": "55d654ff3457d085ec773cd279d10d00375c24dcbba12a78969fade350cffe3b",
+    "src/models/mastodon_hashtag.ts": "0f7cbff3f6fe8784df1f5f230c7d2c3dc89d4b66cd2ee7f5a4d63840007f8b18",
+    "src/models/mastodon_search.ts": "d98582320bb66c44fb5fa2e1cce0ac02a1ec5233c682505ddc5229437b2fe967",
+    "src/models/search_kind.ts": "7c60206c3fed669aa284d929e5eab6044b6a1d25a1a0e91367f0a33972c31b64",
+    "src/search.tsx": "c932db0ea7f9ef6d8a86f45c9c34c7249a6499d543fb3ebd168893850220704c",
+    "src/views/account_list_item.tsx": "523008559f580085bef200d163c5418984e875ec46d3b5ef9a742c13de3c2964",
+    "src/views/hashtag_list_item.tsx": "fef7ce08361ee6a4358818e38918190bf6d446480bdcaf39ececdf8da211b2fa",
+    "src/views/search_kind_dropdown.tsx": "8aab08e4b9e2f3275166bb319fee72f52c1c430b20cefe3ef5c8d1ca1574c211",
+    "test/smoke.test.ts": "bf3501e34f96f56d555db02b32f6e14c532a90370b73c50f1bda671d6a0b5b2b",
+    "tsconfig.json": "bb151e8c2e5442f6f9e42b27c08d88b0f7d2c5c127268ce0aedab2ef964b1eee"
+  },
+  "fixtures": {
+    "qa/fixtures/source/.eslintrc.json": {
+      "pin": "dd73024af23ed7d716421592aac26c323500206d",
+      "gitPath": ".eslintrc.json",
+      "sha256": "4ba4be7bd41dcd6b792eec134e7faa177988d2958ef1b1c91f93339f60a74ae1"
+    },
+    "qa/fixtures/source/.gitignore": {
+      "pin": "dd73024af23ed7d716421592aac26c323500206d",
+      "gitPath": ".gitignore",
+      "sha256": "b027adcbb6131ef49be335e9a699657351ca3d5bb2b474379634d1714f5a585b"
+    },
+    "qa/fixtures/source/.prettierrc": {
+      "pin": "dd73024af23ed7d716421592aac26c323500206d",
+      "gitPath": ".prettierrc",
+      "sha256": "7e558c740d282cf16220c67d13b7c7ccd7ab0beef504769171c191929e323ead"
+    },
+    "qa/fixtures/source/CHANGELOG.md": {
+      "pin": "dd73024af23ed7d716421592aac26c323500206d",
+      "gitPath": "CHANGELOG.md",
+      "sha256": "c659ab5f0fdac13b02433f45b5aa39fe0ade4ec9597a7e8e0dc78d1c7be91f38"
+    },
+    "qa/fixtures/source/LICENSE": {
+      "pin": "dd73024af23ed7d716421592aac26c323500206d",
+      "gitPath": "LICENSE",
+      "sha256": "1d7dbdbcd4fe14dfa08334fab20bffad23c1290f195792a3a4420dadf9912f81"
+    },
+    "qa/fixtures/source/LICENSE.md": {
+      "pin": "dd73024af23ed7d716421592aac26c323500206d",
+      "gitPath": "LICENSE.md",
+      "sha256": "02b9238d9451975483c0223d72ee90a665cea152854111c4532866a48fdf17da"
+    },
+    "qa/fixtures/source/README.md": {
+      "pin": "dd73024af23ed7d716421592aac26c323500206d",
+      "gitPath": "README.md",
+      "sha256": "1b2ebfb1d9db111a1b469709c7ee46e3f01e277d8401d3a185e087c65f62ac61"
+    },
+    "qa/fixtures/source/assets/command-icon.png": {
+      "pin": "dd73024af23ed7d716421592aac26c323500206d",
+      "gitPath": "assets/command-icon.png",
+      "sha256": "cf8072956e54114ab4044849f5e5441577ec56676a942c9d8aced00648169c09"
+    },
+    "qa/fixtures/source/metadata/metadata-1.png": {
+      "pin": "dd73024af23ed7d716421592aac26c323500206d",
+      "gitPath": "metadata/metadata-1.png",
+      "sha256": "1f35837902f40b3c62e486ace6f8013a2d3a7fd7cb7a15d501a7742d0226ed4b"
+    },
+    "qa/fixtures/source/metadata/metadata-2.png": {
+      "pin": "dd73024af23ed7d716421592aac26c323500206d",
+      "gitPath": "metadata/metadata-2.png",
+      "sha256": "ed6f8693c0db9b0c9a91d1219aa09b1a4cb63138f39d00a3bfa97f1ff10d2ec7"
+    },
+    "qa/fixtures/source/package-lock.json": {
+      "pin": "dd73024af23ed7d716421592aac26c323500206d",
+      "gitPath": "package-lock.json",
+      "sha256": "2180348b4e33fe653fd4a229a91ea469b48e6d9a2d4e5e468a42bc68dcd44cd6"
+    },
+    "qa/fixtures/source/package.json": {
+      "pin": "dd73024af23ed7d716421592aac26c323500206d",
+      "gitPath": "package.json",
+      "sha256": "241128c943fbbe935313cc4a13346130e3ce19a9b855d4b2fbfc090f45ae2fac"
+    },
+    "qa/fixtures/source/raycast-env.d.ts": {
+      "pin": "dd73024af23ed7d716421592aac26c323500206d",
+      "gitPath": "raycast-env.d.ts",
+      "sha256": "337d4a0b2c9cdf74f77d88f87839461c608fb508b279e5dfe1a38fa8c4c701bd"
+    },
+    "qa/fixtures/source/src/models/mastodon_account.ts": {
+      "pin": "dd73024af23ed7d716421592aac26c323500206d",
+      "gitPath": "src/models/mastodon_account.ts",
+      "sha256": "41c93878fc9e872b75f95020745c96689babd80e91ba96cc8859ff7d1eac26fb"
+    },
+    "qa/fixtures/source/src/models/mastodon_api_schema.ts": {
+      "pin": "dd73024af23ed7d716421592aac26c323500206d",
+      "gitPath": "src/models/mastodon_api_schema.ts",
+      "sha256": "55d654ff3457d085ec773cd279d10d00375c24dcbba12a78969fade350cffe3b"
+    },
+    "qa/fixtures/source/src/models/mastodon_hashtag.ts": {
+      "pin": "dd73024af23ed7d716421592aac26c323500206d",
+      "gitPath": "src/models/mastodon_hashtag.ts",
+      "sha256": "0f7cbff3f6fe8784df1f5f230c7d2c3dc89d4b66cd2ee7f5a4d63840007f8b18"
+    },
+    "qa/fixtures/source/src/models/mastodon_search.ts": {
+      "pin": "dd73024af23ed7d716421592aac26c323500206d",
+      "gitPath": "src/models/mastodon_search.ts",
+      "sha256": "d98582320bb66c44fb5fa2e1cce0ac02a1ec5233c682505ddc5229437b2fe967"
+    },
+    "qa/fixtures/source/src/models/search_kind.ts": {
+      "pin": "dd73024af23ed7d716421592aac26c323500206d",
+      "gitPath": "src/models/search_kind.ts",
+      "sha256": "7c60206c3fed669aa284d929e5eab6044b6a1d25a1a0e91367f0a33972c31b64"
+    },
+    "qa/fixtures/source/src/search.tsx": {
+      "pin": "dd73024af23ed7d716421592aac26c323500206d",
+      "gitPath": "src/search.tsx",
+      "sha256": "c932db0ea7f9ef6d8a86f45c9c34c7249a6499d543fb3ebd168893850220704c"
+    },
+    "qa/fixtures/source/src/views/account_list_item.tsx": {
+      "pin": "dd73024af23ed7d716421592aac26c323500206d",
+      "gitPath": "src/views/account_list_item.tsx",
+      "sha256": "523008559f580085bef200d163c5418984e875ec46d3b5ef9a742c13de3c2964"
+    },
+    "qa/fixtures/source/src/views/hashtag_list_item.tsx": {
+      "pin": "dd73024af23ed7d716421592aac26c323500206d",
+      "gitPath": "src/views/hashtag_list_item.tsx",
+      "sha256": "fef7ce08361ee6a4358818e38918190bf6d446480bdcaf39ececdf8da211b2fa"
+    },
+    "qa/fixtures/source/src/views/search_kind_dropdown.tsx": {
+      "pin": "dd73024af23ed7d716421592aac26c323500206d",
+      "gitPath": "src/views/search_kind_dropdown.tsx",
+      "sha256": "8aab08e4b9e2f3275166bb319fee72f52c1c430b20cefe3ef5c8d1ca1574c211"
+    },
+    "qa/fixtures/source/test/smoke.test.ts": {
+      "pin": "dd73024af23ed7d716421592aac26c323500206d",
+      "gitPath": "test/smoke.test.ts",
+      "sha256": "bf3501e34f96f56d555db02b32f6e14c532a90370b73c50f1bda671d6a0b5b2b"
+    },
+    "qa/fixtures/source/tsconfig.json": {
+      "pin": "dd73024af23ed7d716421592aac26c323500206d",
+      "gitPath": "tsconfig.json",
+      "sha256": "bb151e8c2e5442f6f9e42b27c08d88b0f7d2c5c127268ce0aedab2ef964b1eee"
+    },
+    "qa/fixtures/sdk/Cargo.lock": {
+      "pin": "e955911f0bf5b558f9d3eb5183df0adc95c22af2",
+      "gitPath": "Cargo.lock",
+      "sha256": "9903aa991794a57df3eeaf61827a024244cb9b56fe280ba16f357c78db7f858b"
+    },
+    "qa/fixtures/sdk/Cargo.toml": {
+      "pin": "e955911f0bf5b558f9d3eb5183df0adc95c22af2",
+      "gitPath": "Cargo.toml",
+      "sha256": "f3f6c5a49f92dced2ff7b8ea9c5942d826a8a6c3cdade67f62003ded86b506dd"
+    },
+    "qa/fixtures/sdk/HOST_INTEGRATION.md": {
+      "pin": "e955911f0bf5b558f9d3eb5183df0adc95c22af2",
+      "gitPath": "HOST_INTEGRATION.md",
+      "sha256": "88e6ca0c1090bcdf5d5501583e52e3eb7b0a369f4fea17ce4b01616c2f69d9a8"
+    },
+    "qa/fixtures/sdk/LICENSE": {
+      "pin": "e955911f0bf5b558f9d3eb5183df0adc95c22af2",
+      "gitPath": "LICENSE",
+      "sha256": "0ed6b1b2760294d4aaaa45be38e166fcc0168e1dd5190423c096fcbe1c94afbf"
+    },
+    "qa/fixtures/sdk/NOTICE": {
+      "pin": "e955911f0bf5b558f9d3eb5183df0adc95c22af2",
+      "gitPath": "NOTICE",
+      "sha256": "aa04ab6115cfc2e2172b0613013611a59dc487c70f3e2dfbd2f135326d703c74"
+    },
+    "qa/fixtures/sdk/PROTOCOL.md": {
+      "pin": "e955911f0bf5b558f9d3eb5183df0adc95c22af2",
+      "gitPath": "PROTOCOL.md",
+      "sha256": "0bc474c2e79e6e3f46ad2d577f83144ad69bd87cb17b74600a17178bcc257371"
+    },
+    "qa/fixtures/sdk/SDK_API.md": {
+      "pin": "e955911f0bf5b558f9d3eb5183df0adc95c22af2",
+      "gitPath": "SDK_API.md",
+      "sha256": "73945c65d763a82ee1bd64b2f30418f8aaec2e75966d71d7b774e7f7e40f098e"
+    },
+    "qa/fixtures/sdk/src/bin/fixture.rs": {
+      "pin": "e955911f0bf5b558f9d3eb5183df0adc95c22af2",
+      "gitPath": "src/bin/fixture.rs",
+      "sha256": "3b5cc8ce719e23a6d1fce2e44b846437066c3018264da78f0c43c9e1ba402997"
+    },
+    "qa/fixtures/sdk/src/context.rs": {
+      "pin": "e955911f0bf5b558f9d3eb5183df0adc95c22af2",
+      "gitPath": "src/context.rs",
+      "sha256": "9d8498bf3799690703c0a4e70fed2c9356850cc0c4e35370104fd09898c09efa"
+    },
+    "qa/fixtures/sdk/src/lib.rs": {
+      "pin": "e955911f0bf5b558f9d3eb5183df0adc95c22af2",
+      "gitPath": "src/lib.rs",
+      "sha256": "7ffb2da74cfcf91f428453cf90594baa79b21251b7df77756348e0acda79cd16"
+    },
+    "qa/fixtures/sdk/src/runner.rs": {
+      "pin": "e955911f0bf5b558f9d3eb5183df0adc95c22af2",
+      "gitPath": "src/runner.rs",
+      "sha256": "975350f717db0a3bf9cac11e9efd733719d2148544c2e38d82758c92a0a88053"
+    },
+    "qa/fixtures/sdk/src/stdio.rs": {
+      "pin": "e955911f0bf5b558f9d3eb5183df0adc95c22af2",
+      "gitPath": "src/stdio.rs",
+      "sha256": "787a82df188796d492b520bbdb37efee41f7e7214f3aa7e167bd468074be25c9"
+    },
+    "qa/fixtures/sdk/src/storage.rs": {
+      "pin": "e955911f0bf5b558f9d3eb5183df0adc95c22af2",
+      "gitPath": "src/storage.rs",
+      "sha256": "6cbb7018c8e090fb801afd6410fc1275d18cec195d7d1b59d7138dce5d4f999a"
+    },
+    "qa/fixtures/host/LICENSE": {
+      "pin": "ea100cee3f69711de12485ba061950c5fc65258f",
+      "gitPath": "LICENSE",
+      "sha256": "0ed6b1b2760294d4aaaa45be38e166fcc0168e1dd5190423c096fcbe1c94afbf"
+    },
+    "qa/fixtures/host/docs/NATIVE_V2_FORMAT.md": {
+      "pin": "ea100cee3f69711de12485ba061950c5fc65258f",
+      "gitPath": "docs/NATIVE_V2_FORMAT.md",
+      "sha256": "8bf9315ad047326dd6737587ca5491fc35faf5e3f92a2d9c63f596be0c8f7b7a"
+    },
+    "qa/fixtures/host/schemas/extension-v3.schema.json": {
+      "pin": "ea100cee3f69711de12485ba061950c5fc65258f",
+      "gitPath": "schemas/extension-v3.schema.json",
+      "sha256": "6f42f0316aa88097703496e828b11afcc7caecf8477fa7502df903c3ad2a8048"
+    },
+    "qa/fixtures/host/src/main/extensionWorker/clipboard.ts": {
+      "pin": "ea100cee3f69711de12485ba061950c5fc65258f",
+      "gitPath": "src/main/extensionWorker/clipboard.ts",
+      "sha256": "b8ff17943545b6f56e7e8fdbdd419ffd53354de0b8ec9634766063264e0e9c6b"
+    },
+    "qa/fixtures/host/src/main/extensionWorker/desktop.ts": {
+      "pin": "ea100cee3f69711de12485ba061950c5fc65258f",
+      "gitPath": "src/main/extensionWorker/desktop.ts",
+      "sha256": "a6a2d8087e9b07ed3fa760a98fab26650b5a8e390e5826f58b229a439e5c5625"
+    },
+    "qa/fixtures/host/src/renderer/ExtensionRuntimeView.tsx": {
+      "pin": "ea100cee3f69711de12485ba061950c5fc65258f",
+      "gitPath": "src/renderer/ExtensionRuntimeView.tsx",
+      "sha256": "c8378d1a1cc91cf622f81dc1bd88ed986ea2e9c396f7ff497e649171f573c5e8"
+    },
+    "qa/fixtures/host/src/renderer/extensionImages.ts": {
+      "pin": "ea100cee3f69711de12485ba061950c5fc65258f",
+      "gitPath": "src/renderer/extensionImages.ts",
+      "sha256": "053b98b523ed3ae06957d5eb84b0c4243db5ef4725614580e498ead7c53a518a"
+    },
+    "qa/fixtures/host/src/renderer/extensionSessionRefresh.ts": {
+      "pin": "ea100cee3f69711de12485ba061950c5fc65258f",
+      "gitPath": "src/renderer/extensionSessionRefresh.ts",
+      "sha256": "e45b3a3d09ac52456ac48f6ecbd8e6e97512ce8306b3f876112223af2ba2ec63"
+    },
+    "qa/fixtures/host/src/renderer/src/raycast-api/index.tsx": {
+      "pin": "ea100cee3f69711de12485ba061950c5fc65258f",
+      "gitPath": "src/renderer/src/raycast-api/index.tsx",
+      "sha256": "7fc8413a72b92e8f88b0939cd93f91624018fe0765baa1e71b38b86f8cc77a64"
+    },
+    "qa/fixtures/host/src/renderer/src/raycast-api/list-runtime.tsx": {
+      "pin": "ea100cee3f69711de12485ba061950c5fc65258f",
+      "gitPath": "src/renderer/src/raycast-api/list-runtime.tsx",
+      "sha256": "c7e253c34ce6e0a5132cab96bf1f0388393faca79ff57c3fdc7956f377a0ab0f"
+    },
+    "qa/fixtures/host/src/renderer/tauri-bridge.ts": {
+      "pin": "ea100cee3f69711de12485ba061950c5fc65258f",
+      "gitPath": "src/renderer/tauri-bridge.ts",
+      "sha256": "a6d454fb3c39081ea18dd745cd856519682b089464aa043ecd778d39cb22bab9"
+    },
+    "qa/fixtures/host/src/shared/desktop-api.ts": {
+      "pin": "ea100cee3f69711de12485ba061950c5fc65258f",
+      "gitPath": "src/shared/desktop-api.ts",
+      "sha256": "67b93a2b71d7e39a99940ff81badd71886429df2d1a9244ccb191b7a1929e38f"
+    },
+    "qa/fixtures/host/src/shared/extensionRuntime.ts": {
+      "pin": "ea100cee3f69711de12485ba061950c5fc65258f",
+      "gitPath": "src/shared/extensionRuntime.ts",
+      "sha256": "47a290032a9967e2dee5142030b4ef8cfc5237a79521aa535f8a12d8c16deda4"
+    },
+    "qa/fixtures/host/src-tauri/src/native_core/extension_worker.rs": {
+      "pin": "ea100cee3f69711de12485ba061950c5fc65258f",
+      "gitPath": "src-tauri/src/native_core/extension_worker.rs",
+      "sha256": "c7557dee1375a7c6bdd62284bdb10af090090c7550d8289fcc079002a6d7b491"
+    },
+    "qa/fixtures/host/src-tauri/src/native_core/extensions/process.rs": {
+      "pin": "ea100cee3f69711de12485ba061950c5fc65258f",
+      "gitPath": "src-tauri/src/native_core/extensions/process.rs",
+      "sha256": "eb51da47a912c2a364eff16874b584ee0a2a4b571968ac17fd5056715a2c3d18"
+    },
+    "qa/fixtures/host/src-tauri/src/native_core/extensions/process_host.rs": {
+      "pin": "ea100cee3f69711de12485ba061950c5fc65258f",
+      "gitPath": "src-tauri/src/native_core/extensions/process_host.rs",
+      "sha256": "daf45815d76762323c6c1320c88ed24dfe28160a60bb4974b8073e3f17a3b982"
+    },
+    "qa/fixtures/host/src-tauri/src/native_core/extensions/process_install.rs": {
+      "pin": "ea100cee3f69711de12485ba061950c5fc65258f",
+      "gitPath": "src-tauri/src/native_core/extensions/process_install.rs",
+      "sha256": "1fc130d58703f80db0c5255d31a1e31b9f4e1a67876f98f86ceae7ede6363ee7"
+    },
+    "qa/fixtures/host/src-tauri/src/native_core/extensions/v2_catalog.rs": {
+      "pin": "ea100cee3f69711de12485ba061950c5fc65258f",
+      "gitPath": "src-tauri/src/native_core/extensions/v2_catalog.rs",
+      "sha256": "091b6ab2cd75a3c7031d16e3d0c0f7eeb137ec233a0cfd2a1e41abcffeab868e"
+    },
+    "qa/fixtures/host/src-tauri/src/native_core/extensions/v2_runtime.rs": {
+      "pin": "ea100cee3f69711de12485ba061950c5fc65258f",
+      "gitPath": "src-tauri/src/native_core/extensions/v2_runtime.rs",
+      "sha256": "537aeb67c9a7ad052c348d6c4fe09b19027854d07e912a432d36bc14896fc392"
+    },
+    "qa/fixtures/host/src-tauri/src/native_core/launcher/clipboard.rs": {
+      "pin": "ea100cee3f69711de12485ba061950c5fc65258f",
+      "gitPath": "src-tauri/src/native_core/launcher/clipboard.rs",
+      "sha256": "8af5b882e06c9025d09a71b46b2f36c3e2a41513cd44fd2d0f945c58c9aa8d7d"
+    },
+    "qa/fixtures/host/src-tauri/src/native_core/platform.rs": {
+      "pin": "ea100cee3f69711de12485ba061950c5fc65258f",
+      "gitPath": "src-tauri/src/native_core/platform.rs",
+      "sha256": "33e6b7ec5b305ee3ffb857985d0483e54891998ff2a51c10f12695b80a1953e6"
+    }
+  },
+  "icon": {
+    "upstream": "https://raw.githubusercontent.com/raycast/extensions/6734d85992290066fd31a7f5bee3cca3d3545a1a/extensions/mastodon-search/assets/command-icon.png",
+    "sha256": "cf8072956e54114ab4044849f5e5441577ec56676a942c9d8aced00648169c09",
+    "comparison": "fresh pinned HTTP fetch, own Git blob, root asset and V2 asset identical"
+  },
+  "temporaryRegistration": "mcp:66119403-0acd-46af-b333-f17db1a00bde",
+  "xerj": {
+    "prefix": "ax-6d9e093035a8",
+    "stateDirectory": "/Users/almat/.local/share/xerj/workspaces/ax-6d9e093035a8",
+    "result": "initial generation 1: 18 indexed files/97 records, all 11 original code files indexed, exit 3 completed-with-junk. Final bounded refresh aborted in 0.6 s on v2/Cargo.toml: no frozen dataset accepts family docs; unsupported schema evolution. Adapter search returned no match because V2 indexing is incomplete. Full source/Git/rg/hash fallback used. No new prefix, settings/schema/server changes, bypass or restart"
+  }
+}

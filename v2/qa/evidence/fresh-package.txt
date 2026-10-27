@@ -1,0 +1,6 @@
+{
+  "productionSha256": "7ae62412d86122ed73d5e628d4639f4e70aa18afea065bfabbc16ecf5901a0d7",
+  "zipSha256": "fa9399c8f5b294cee184d42e4dbaf41ca212597718c2020f81d29c9dbe610e33",
+  "zipSize": 4467835,
+  "extracted": ".work/extracted-_n91azu0"
+}

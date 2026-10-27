@@ -1,0 +1,52 @@
+{
+  "status": "ready for parent review; unstaged/uncommitted; clone retained",
+  "branch": "feat/native-v2-rust",
+  "head": "dd73024af23ed7d716421592aac26c323500206d",
+  "scope": [
+    "v2/",
+    "one root README discovery link"
+  ],
+  "counts": {
+    "sourceOracle": 12,
+    "sourceWhatwgVectors": 60,
+    "sourceMimeVectors": 12,
+    "rustTestsEachToolchain": 9,
+    "rustToolchains": [
+      "stable 1.98.0",
+      "1.85.0"
+    ],
+    "sdkOwnedTlsPipeChecks": 71,
+    "extractedProductionChecks": 16,
+    "rendererFunctionChecks": 48,
+    "schemaChecks": 20,
+    "v1SmokeTests": 1,
+    "rustRegistryArchives": 142
+  },
+  "checks": {
+    "v1Typecheck": "passed unmodified exact-lock disposable source",
+    "rustFmt": "passed",
+    "stableAnd185ClippyAllTargets": "passed -D warnings",
+    "qaHelperFmtAndStable185Clippy": "passed",
+    "hostTypedSeamCheck": "zero baseline/proposed diagnostics",
+    "freshHttpsSdkRelease": "passed; existing toolchain strip-helper warning retained",
+    "deterministicClosedArm64DevZip": "passed",
+    "productionTrust": "genuine production private-CA rejection; trusted owned TLS success uses separate QA helper"
+  },
+  "gaps": [
+    "separate host patch is UNAPPLIED; no full host build or installed GUI acceptance",
+    "both manifest native verification states remain not-run; source artifacts empty",
+    "Windows GNU check/clippy compiler block in ring: x86_64-w64-mingw32-gcc absent; MSVC compilation/runtime not run",
+    "no live Mastodon/product/user operation during QA",
+    "bounded in-memory response cache replaces persistent Raycast cache; no cross-command response migration",
+    "remote image restrictions and source parser/error/redirect adaptations documented in BEHAVIOR.md",
+    "final XERJ refresh blocked by frozen schema; V2 index incomplete; complete source/Git/rg/hash fallback",
+    "QA-only Raycast API/utils archives declare MIT but lack license text; authentic missing texts recorded, not invented"
+  ],
+  "iconSha256": "cf8072956e54114ab4044849f5e5441577ec56676a942c9d8aced00648169c09",
+  "productionSha256": "3f6fbbeacbc8a3fbee4259175e14596f0b94f462fdc288ec9d9c6ce2d9d420a0",
+  "devZipSha256": "dd84d89a2da7ff2d3b8da33cc267765617d292757f0b33a6af577e7cb0ad6098",
+  "registration": "mcp:66119403-0acd-46af-b333-f17db1a00bde",
+  "reproduce": "cd v2 && python3 qa/run.py",
+  "index": "empty; parent must independently hash staged blobs",
+  "publication": "no staging/commit/push/PR/release/install/deletion"
+}

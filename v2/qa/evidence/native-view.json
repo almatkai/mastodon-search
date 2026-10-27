@@ -1,0 +1,282 @@
+{
+  "actions": [
+    {
+      "id": "m:1:1",
+      "kind": "action",
+      "title": "Visit Profile"
+    },
+    {
+      "id": "m:1:2",
+      "kind": "action",
+      "shortcut": {
+        "key": "c",
+        "modifiers": [
+          "cmd",
+          "shift"
+        ]
+      },
+      "title": "Copy Profile URL"
+    },
+    {
+      "id": "m:1:3",
+      "kind": "action",
+      "shortcut": {
+        "key": "c",
+        "modifiers": [
+          "cmd",
+          "shift",
+          "opt"
+        ]
+      },
+      "title": "Copy Handle"
+    },
+    {
+      "id": "m:1:4",
+      "kind": "action",
+      "title": "Visit Profile"
+    },
+    {
+      "id": "m:1:5",
+      "kind": "action",
+      "shortcut": {
+        "key": "c",
+        "modifiers": [
+          "cmd",
+          "shift"
+        ]
+      },
+      "title": "Copy Profile URL"
+    },
+    {
+      "id": "m:1:6",
+      "kind": "action",
+      "shortcut": {
+        "key": "c",
+        "modifiers": [
+          "cmd",
+          "shift",
+          "opt"
+        ]
+      },
+      "title": "Copy Handle"
+    },
+    {
+      "id": "m:1:7",
+      "kind": "action",
+      "title": "Visit Profile"
+    },
+    {
+      "id": "m:1:8",
+      "kind": "action",
+      "shortcut": {
+        "key": "c",
+        "modifiers": [
+          "cmd",
+          "shift"
+        ]
+      },
+      "title": "Copy Profile URL"
+    },
+    {
+      "id": "m:1:9",
+      "kind": "action",
+      "shortcut": {
+        "key": "c",
+        "modifiers": [
+          "cmd",
+          "shift",
+          "opt"
+        ]
+      },
+      "title": "Copy Handle"
+    },
+    {
+      "id": "m:1:10",
+      "kind": "action",
+      "title": "Visit Hashtag"
+    },
+    {
+      "id": "m:1:11",
+      "kind": "action",
+      "title": "Visit Hashtag"
+    },
+    {
+      "id": "m:1:kind",
+      "kind": "action",
+      "title": "Search for\u2026"
+    }
+  ],
+  "mode": "view",
+  "ok": true,
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "props": {
+              "accessories": [
+                {
+                  "icon": "Icon.ComputerChip",
+                  "text": "Bot Account",
+                  "tooltip": "Account is a bot"
+                },
+                {
+                  "icon": "Icon.TwoPeople",
+                  "text": "42",
+                  "tooltip": "Number of followers"
+                }
+              ],
+              "actionIds": [
+                "m:1:1",
+                "m:1:2",
+                "m:1:3"
+              ],
+              "icon": {
+                "mask": "roundedRectangle",
+                "source": "https://avatar.invalid/a.png"
+              },
+              "id": "account:0",
+              "sourceId": "109912345678901234",
+              "subtitle": "@local@127.0.0.1:50818",
+              "title": "Owned A"
+            },
+            "type": "List.Item"
+          },
+          {
+            "props": {
+              "accessories": [
+                {
+                  "icon": "Icon.TwoPeople",
+                  "text": "42",
+                  "tooltip": "Number of followers"
+                }
+              ],
+              "actionIds": [
+                "m:1:4",
+                "m:1:5",
+                "m:1:6"
+              ],
+              "icon": {
+                "mask": "roundedRectangle",
+                "source": "https://avatar.invalid/a.png"
+              },
+              "id": "account:1",
+              "sourceId": 7,
+              "subtitle": "@r@else.invalid",
+              "title": "Owned A"
+            },
+            "type": "List.Item"
+          },
+          {
+            "props": {
+              "accessories": [
+                {
+                  "icon": "Icon.ComputerChip",
+                  "text": "Bot Account",
+                  "tooltip": "Account is a bot"
+                },
+                {
+                  "icon": "Icon.TwoPeople",
+                  "text": "42",
+                  "tooltip": "Number of followers"
+                }
+              ],
+              "actionIds": [
+                "m:1:7",
+                "m:1:8",
+                "m:1:9"
+              ],
+              "icon": {
+                "mask": "roundedRectangle",
+                "source": "https://avatar.invalid/a.png"
+              },
+              "id": "account:2",
+              "sourceId": "109912345678901234",
+              "subtitle": "@local@127.0.0.1:50818",
+              "title": "Owned A"
+            },
+            "type": "List.Item"
+          }
+        ],
+        "props": {
+          "title": "People"
+        },
+        "type": "List.Section"
+      },
+      {
+        "children": [
+          {
+            "props": {
+              "actionIds": [
+                "m:1:10"
+              ],
+              "icon": "Icon.Hashtag",
+              "id": "hashtag:0",
+              "title": "z"
+            },
+            "type": "List.Item"
+          },
+          {
+            "props": {
+              "actionIds": [
+                "m:1:11"
+              ],
+              "icon": "Icon.Hashtag",
+              "id": "hashtag:1",
+              "title": "z"
+            },
+            "type": "List.Item"
+          }
+        ],
+        "props": {
+          "title": "Hashtags"
+        },
+        "type": "List.Section"
+      },
+      {
+        "props": {
+          "title": "No results"
+        },
+        "type": "List.EmptyView"
+      }
+    ],
+    "props": {
+      "__clientOwnedInput": true,
+      "__draftOnly": false,
+      "__hasServerSearch": true,
+      "__inputRevision": null,
+      "__modelRevision": 3,
+      "isLoading": false,
+      "searchBarAccessory": {
+        "children": [
+          {
+            "props": {
+              "title": "People",
+              "value": "accounts"
+            },
+            "type": "List.Dropdown.Item"
+          },
+          {
+            "props": {
+              "title": "Hashtags",
+              "value": "hashtags"
+            },
+            "type": "List.Dropdown.Item"
+          }
+        ],
+        "props": {
+          "actionId": "m:1:kind",
+          "storeValue": true,
+          "tooltip": "Search for&hellip;",
+          "value": "accounts"
+        },
+        "type": "List.Dropdown"
+      },
+      "searchBarPlaceholder": "Search Mastodon",
+      "searchText": "A",
+      "throttle": true
+    },
+    "type": "List"
+  },
+  "title": "Search Mastodon"
+}

@@ -1,0 +1,13 @@
+ok 1 - empty default People dropdown, both sections, no request
+ok 2 - loading nonempty uses exact raw route
+ok 3 - string and numeric IDs; duplicates; full source order and all action families
+ok 4 - keepPreviousData during loading
+ok 5 - exact raw URL cache A/B/A before fresh response
+ok 6 - failed refresh retains cached A and custom Error toast; no source retry action
+ok 7 - empty after success keeps previous data without fetching
+ok 8 - empty dropdown does not execute
+ok 9 - Hashtags dropdown uses exact type; not a local filter
+ok 10 - hashtag ordering and URL retained
+ok 11 - 60 actual complete-source request WHATWG URL vectors
+ok 12 - actual locked JSON MIME parser vectors
+source oracle: 12 checks; no real network/fs/host/storage/clock producers

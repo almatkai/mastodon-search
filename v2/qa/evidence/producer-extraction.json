@@ -1,0 +1,8 @@
+{
+  "hostPin": "ea100cee3f69711de12485ba061950c5fc65258f",
+  "functions": {
+    "Worker::handle": "c551219f25bb7019e04f18fab21c839ff80b85d5b075b49175b7cd48723b500f",
+    "open_target": "7bd5c2cfd2c92c06568d2d89e1343f5f4091e4e8abf95d11384ed4673f0910d1"
+  },
+  "effectBoundaries": "native clipboard, image/base64, open, fs, clock and storage replaced by synthetic adapters before execution"
+}

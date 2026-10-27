@@ -1,0 +1,551 @@
+--- a/src/renderer/src/raycast-api/list-runtime.tsx
++++ b/src/renderer/src/raycast-api/list-runtime.tsx
+@@ -16,8 +16,9 @@
+     fileIcon?: string
+     source?: unknown
+     tintColor?: unknown
+-  }
+-  accessories?: Array<{ text?: unknown; tag?: unknown; date?: unknown; icon?: unknown }>
++    mask?: unknown
++  }
++  accessories?: Array<{ text?: unknown; tag?: unknown; date?: unknown; icon?: unknown; tooltip?: unknown }>
+   detail?: ExtensionRuntimeNode
+   section?: string
+   actionIds?: string[]
+@@ -27,6 +28,9 @@
+ 
+ type ListAccessory = {
+   actionId?: string
++  value?: string
++  storeValue?: boolean
++  tooltip?: string
+   options: Array<{ title: string; value: string; icon?: unknown }>
+ }
+ 
+@@ -48,6 +52,9 @@
+   walk(node)
+ 
+   return {
++    tooltip: typeof node.props?.tooltip === 'string' ? node.props.tooltip : undefined,
++    storeValue: node.props?.storeValue === true,
++    value: typeof node.props?.value === 'string' ? node.props.value : undefined,
+     actionId: typeof node.props?.actionId === 'string' ? node.props.actionId : undefined,
+     options,
+   }
+@@ -63,11 +70,11 @@
+     return { source: value.trim() }
+   }
+   if (!value || typeof value !== 'object') return undefined
+-  const icon = value as { fileIcon?: unknown; source?: unknown; tintColor?: unknown }
++  const icon = value as { fileIcon?: unknown; source?: unknown; tintColor?: unknown; mask?: unknown }
+   if (typeof icon.fileIcon === 'string' && icon.fileIcon.trim()) {
+     return { fileIcon: icon.fileIcon.trim() }
+   }
+-  if ('source' in icon) return { source: icon.source, tintColor: icon.tintColor }
++  if ('source' in icon) return { source: icon.source, tintColor: icon.tintColor, mask: icon.mask }
+   return undefined
+ }
+ 
+@@ -100,6 +107,7 @@
+       tag: entry.tag,
+       date: entry.date,
+       icon: entry.icon,
++      tooltip: entry.tooltip,
+     }))
+ }
+ 
+@@ -225,7 +233,13 @@
+         stroke="currentColor"
+         strokeWidth="2"
+       >
+-        {label.includes('check') ? (
++        {label.includes('hashtag') ? (
++          <path d="M9 3 7 21M17 3l-2 18M4 9h16M3 15h16" />
++        ) : label.includes('computerchip') ? (
++          <><rect x="6" y="6" width="12" height="12" rx="2" /><path d="M9 2v4m6-4v4M9 18v4m6-4v4M2 9h4m-4 6h4m12-6h4m-4 6h4" /></>
++        ) : label.includes('twopeople') ? (
++          <><circle cx="9" cy="8" r="3" /><path d="M3 21v-2a6 6 0 0 1 12 0v2m1-16a3 3 0 0 1 0 6m2 4a5 5 0 0 1 3 4v2" /></>
++        ) : label.includes('check') ? (
+           <>
+             <circle cx="12" cy="12" r="9" />
+             <path d="m8 12 2.6 2.6L16.5 9" />
+@@ -295,6 +309,90 @@
+   )
+ }
+ 
++// Generic bounded remote List image support; no extension-specific branches.
++function listImageDimensions(b: Uint8Array): [number, number] | null {
++  const be = (i: number) => ((b[i] * 0x1000000) + (b[i + 1] << 16) + (b[i + 2] << 8) + b[i + 3])
++  const le16 = (i: number) => b[i] | (b[i + 1] << 8)
++  const ascii = (i: number, s: string) => Array.from(s).every((c, n) => b[i + n] === c.charCodeAt(0))
++  if (b.length >= 24 && b[0] === 137 && ascii(1, 'PNG\r\n\x1a\n') && ascii(12, 'IHDR')) return [be(16), be(20)]
++  if (b.length >= 10 && (ascii(0, 'GIF87a') || ascii(0, 'GIF89a'))) return [le16(6), le16(8)]
++  if (b.length >= 30 && ascii(0, 'RIFF') && ascii(8, 'WEBP')) {
++    if (ascii(12, 'VP8X')) return [1 + b[24] + (b[25] << 8) + (b[26] << 16), 1 + b[27] + (b[28] << 8) + (b[29] << 16)]
++    if (ascii(12, 'VP8 ') && b[23] === 157 && b[24] === 1 && b[25] === 42) return [le16(26) & 0x3fff, le16(28) & 0x3fff]
++    if (ascii(12, 'VP8L') && b[20] === 47) return [1 + b[21] + ((b[22] & 63) << 8), 1 + (b[22] >> 6) + (b[23] << 2) + ((b[24] & 15) << 10)]
++  }
++  if (b.length >= 4 && b[0] === 255 && b[1] === 216) {
++    for (let i = 2; i + 8 < b.length;) {
++      if (b[i++] !== 255) return null
++      while (b[i] === 255) i++
++      const marker = b[i++]
++      if (marker === 217 || marker === 218) return null
++      const length = (b[i] << 8) | b[i + 1]
++      if (length < 2 || i + length > b.length) return null
++      if ([192,193,194,195,197,198,199,201,202,203,205,206,207].includes(marker)) return [(b[i + 5] << 8) | b[i + 6], (b[i + 3] << 8) | b[i + 4]]
++      i += length
++    }
++  }
++  return null
++}
++
++function SafeListImage({source, mask}: {source: string; mask?: unknown}): React.ReactNode {
++  const [src, setSrc] = useState<string | null>(null)
++  useEffect(() => {
++    setSrc(null)
++    // Package assets remain local. Remote images use no cookies/referrer/cache,
++    // accept only bounded raster headers, and never follow redirects.
++    if (!/^https?:/i.test(source)) { setSrc(source); return }
++    let objectUrl: string | null = null
++    let stopped = false
++    const controller = new AbortController()
++    const timer = setTimeout(() => controller.abort(), 5000)
++    void (async () => {
++      const url = new URL(source)
++      if (url.protocol !== 'https:' || url.username || url.password) throw new Error('Unsafe image URL')
++      const response = await fetch(url, {signal: controller.signal, credentials:'omit', cache:'no-store', redirect:'error', referrerPolicy:'no-referrer'})
++      if (!response.ok || !response.body) throw new Error('Image unavailable')
++      if (Number(response.headers.get('content-length')) > 2 * 1024 * 1024) throw new Error('Image exceeds size limit')
++      const reader = response.body.getReader()
++      const parts: Uint8Array[] = []
++      let size = 0
++      try {
++        while (true) {
++          const {done, value} = await reader.read()
++          if (done) break
++          size += value.length
++          if (size > 2 * 1024 * 1024) throw new Error('Image exceeds size limit')
++          parts.push(value)
++        }
++      } finally { await reader.cancel(); reader.releaseLock() }
++      const bytes = new Uint8Array(size)
++      let offset = 0
++      for (const part of parts) { bytes.set(part, offset); offset += part.length }
++      const dimensions = listImageDimensions(bytes)
++      if (!dimensions || dimensions.some(n => n < 1 || n > 4096) || dimensions[0] * dimensions[1] > 4_194_304) throw new Error('Image dimensions exceed limits or format unsupported')
++      if (stopped) return
++      objectUrl = URL.createObjectURL(new Blob([bytes]))
++      setSrc(objectUrl)
++    })().catch(() => { controller.abort() }).finally(() => clearTimeout(timer))
++    return () => { stopped = true; clearTimeout(timer); controller.abort(); if (objectUrl) URL.revokeObjectURL(objectUrl) }
++  }, [source])
++  if (!src) return <span className="h-5 w-5 shrink-0" aria-hidden="true" />
++  return <img src={src} alt="" className="h-5 w-5 shrink-0 object-cover" style={{borderRadius: mask === 'roundedRectangle' ? 4 : mask === 'circle' ? '50%' : undefined}} draggable={false} referrerPolicy="no-referrer" />
++}
++
++function matchesListShortcut(event: React.KeyboardEvent<HTMLDivElement>, shortcut: ExtensionRuntimeAction['shortcut'], windows: boolean): boolean {
++  if (!shortcut?.key || event.repeat) return false
++  const modifiers = new Set(shortcut.modifiers ?? [])
++  const command = modifiers.has('cmd') || modifiers.has('command')
++  const meta = modifiers.has('meta') || (!windows && command)
++  const control = modifiers.has('ctrl') || modifiers.has('control') || (windows && command)
++  const alt = modifiers.has('alt') || modifiers.has('opt') || modifiers.has('option')
++  return event.key.toLowerCase() === shortcut.key.toLowerCase()
++    && event.metaKey === meta && event.ctrlKey === control
++    && event.altKey === alt && event.shiftKey === modifiers.has('shift')
++}
++
++
+ function RowIcon({ row }: { row: ListRow }): JSX.Element | null {
+   if (row.swatch) {
+     return (
+@@ -311,7 +409,7 @@
+     typeof row.icon?.source === 'string' &&
+     /^(?:data:image|https?:|file:)/i.test(row.icon.source)
+   ) {
+-    return <img src={row.icon.source} alt="" className="h-5 w-5 shrink-0" draggable={false} />
++    return <SafeListImage source={row.icon.source} mask={row.icon.mask} />
+   }
+   if (row.icon?.source) {
+     return <SymbolIcon icon={row.icon.source} title={row.title} tintColor={row.icon.tintColor} />
+@@ -357,12 +455,14 @@
+ 
+   return (
+     <span
++      title={textValue(accessory.tooltip) || undefined}
+       className={
+         isTag
+           ? `max-w-[190px] shrink-0 truncate rounded-[8px] px-2 py-1 text-[11px] font-medium ${colorClass}`
+-          : 'max-w-[240px] shrink-0 truncate text-[12px] text-ink-3'
++          : 'inline-flex max-w-[240px] shrink-0 items-center gap-1 truncate text-[12px] text-ink-3'
+       }
+     >
++      {accessory.icon ? <SymbolIcon icon={accessory.icon} title={value} /> : null}
+       {value}
+     </span>
+   )
+@@ -476,6 +576,8 @@
+   actions,
+   onOpenActions,
+   onSearchTextChanged,
++  onSearchInput,
++  storageKey,
+   onLoadMore,
+ }: {
+   root: ExtensionRuntimeNode
+@@ -485,7 +587,9 @@
+   onRunPrimaryAction: (actionId?: string, formValues?: Record<string, unknown>) => void
+   actions: ExtensionRuntimeAction[]
+   onOpenActions: (actionIds?: string[]) => void
+-  onSearchTextChanged: (searchText: string) => Promise<void> | void
++  onSearchTextChanged: (searchText: string, inputRevision?: number) => Promise<void> | void
++  onSearchInput?: (searchText: string, inputRevision: number) => void
++  storageKey?: string
+   onLoadMore: () => Promise<void> | void
+ }): React.ReactNode {
+   const inputRef = useRef<HTMLInputElement>(null)
+@@ -531,13 +635,26 @@
+   )
+   const [selected, setSelected] = useState(0)
+   const [accessoryValue, setAccessoryValue] = useState(
+-    searchAccessory?.options[0]?.value ?? '',
++    searchAccessory?.value ?? searchAccessory?.options[0]?.value ?? '',
+   )
+   const [loadingMore, setLoadingMore] = useState(false)
+ 
+   const debounceTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+   const lastSentQuery = useRef('')
++  const inputRevision = useRef(0)
++  const clientOwned = root.props?.__clientOwnedInput === true
+   const loadingMoreRef = useRef(false)
++  const restoredDropdown = useRef(false)
++  useEffect(() => {
++    if (restoredDropdown.current || !storageKey || !searchAccessory?.storeValue) return
++    restoredDropdown.current = true
++    let saved: string | null = null
++    try { saved = window.localStorage.getItem(`tezbar-list-dropdown:${storageKey}`) } catch { return }
++    if (saved === null || saved === accessoryValue || !searchAccessory.options.some(option => option.value === saved)) return
++    setAccessoryValue(saved)
++    if (clientOwned) onSearchInput?.(query, ++inputRevision.current)
++    if (searchAccessory.actionId) onRunPrimaryAction(searchAccessory.actionId, {value: saved, ...(clientOwned ? {searchText: query, inputRevision: inputRevision.current} : {})})
++  }, [storageKey, searchAccessory])
+ 
+   useEffect(() => {
+     inputRef.current?.focus()
+@@ -545,13 +662,19 @@
+ 
+   useEffect(() => {
+     if (typeof root.props?.searchText === 'string') {
+-      setQuery(root.props.searchText)
+-    }
+-  }, [root.props?.searchText])
++      // Once typed, client text stays authoritative, including invalid drafts.
++      // Native snapshot revisions acknowledge ownership; they do not replace input.
++      if (!clientOwned || inputRevision.current === 0) {
++        setQuery(root.props.searchText)
++      }
++    }
++  }, [root.props?.searchText, root.props?.__inputRevision, clientOwned])
+ 
+   useEffect(() => {
+     setAccessoryValue((current) => {
+       if (!searchAccessory || searchAccessory.options.length === 0) return ''
++      if (clientOwned && (root.props?.__draftOnly === true || (inputRevision.current > 0 && root.props?.__inputRevision !== inputRevision.current))) return current
++      if (searchAccessory.value !== undefined) return searchAccessory.value
+       return searchAccessory.options.some((option) => option.value === current)
+         ? current
+         : searchAccessory.options[0]?.value ?? ''
+@@ -563,16 +686,18 @@
+     if (debounceTimer.current) {
+       clearTimeout(debounceTimer.current)
+     }
++    const scheduledInputRevision = inputRevision.current
+     debounceTimer.current = setTimeout(() => {
++      if (clientOwned && scheduledInputRevision !== inputRevision.current) return
+       lastSentQuery.current = query
+-      void onSearchTextChanged(query)
++      void onSearchTextChanged(query, clientOwned ? scheduledInputRevision : undefined)
+     }, 200)
+     return () => {
+       if (debounceTimer.current) {
+         clearTimeout(debounceTimer.current)
+       }
+     }
+-  }, [query, onSearchTextChanged])
++  }, [query, onSearchTextChanged, clientOwned])
+ 
+   const colorConversionRows = useMemo<ListRow[]>(() => {
+     if (!isColorConversionSurface) return []
+@@ -647,6 +772,14 @@
+     }
+ 
+     if (filteredRows.length === 0) return
++    const shortcutAction = actions.find(action => filteredRows[selected]?.actionIds?.includes(action.id)
++      && matchesListShortcut(e, action.shortcut, /Win/i.test(navigator.platform)))
++    if (shortcutAction) {
++      e.preventDefault()
++      e.stopPropagation()
++      onRunPrimaryAction(shortcutAction.id)
++      return
++    }
+ 
+     if (e.key === 'ArrowDown') {
+       e.preventDefault()
+@@ -693,16 +826,16 @@
+     ? hasQuery
+       ? 'No color formats'
+       : 'Enter a color'
+-    : hasQuery
++    : emptyView?.title ? emptyView.title : hasQuery
+       ? 'No matching applications'
+       : emptyView?.title || 'No list items'
+   const emptyDescription = isColorConversionSurface
+     ? hasQuery
+       ? 'Try HEX, RGB, RGBA, HSL, or HSLA.'
+       : 'Type a color value to convert it.'
+-    : hasQuery
++    : emptyView ? emptyView.description : hasQuery
+       ? 'Try a different app name or keyword.'
+-      : emptyView?.description || ''
++      : ''
+ 
+   return (
+     <div
+@@ -712,6 +845,7 @@
+       <div className="glass-card shrink-0 px-4 py-3 animate-tezbar-scale-in">
+         <ViewHeader title={navigationTitle} onBack={onBack} />
+ 
++        {root.props?.isLoading === true ? <p role="status" className="text-[11px] text-ink-3">Loading…</p> : null}
+         {shouldShowSearch ? (
+           <div className={cx('mt-2 flex gap-2', hasManySearchOptions ? 'flex-col items-stretch' : 'items-center')}>
+             <div className="min-w-0 flex-1">
+@@ -720,6 +854,7 @@
+                 type="text"
+                 value={query}
+                 onChange={(event) => {
++                  if (clientOwned) onSearchInput?.(event.target.value, ++inputRevision.current)
+                   setQuery(event.target.value)
+                   setSelected(0)
+                 }}
+@@ -740,12 +875,20 @@
+                   return (
+                     <button
+                       key={option.value}
++                      title={searchAccessory.tooltip}
+                       type="button"
+                       onClick={() => {
++                        if (accessoryValue === option.value) return
+                         setAccessoryValue(option.value)
++                        if (storageKey && searchAccessory.storeValue) { try { window.localStorage.setItem(`tezbar-list-dropdown:${storageKey}`, option.value) } catch {} }
+                         setSelected(0)
++                        if (clientOwned) {
++                          onSearchInput?.(query, ++inputRevision.current)
++                          if (debounceTimer.current) clearTimeout(debounceTimer.current)
++                          lastSentQuery.current = query
++                        }
+                         if (searchAccessory.actionId) {
+-                          onRunPrimaryAction(searchAccessory.actionId, { value: option.value })
++                          onRunPrimaryAction(searchAccessory.actionId, { value: option.value, ...(clientOwned ? {searchText: query, inputRevision: inputRevision.current} : {}) })
+                         }
+                       }}
+                       className={
+@@ -875,7 +1018,7 @@
+         <HintBar>
+           <Hint label="Select" keys={<><Kbd>↑</Kbd><Kbd>↓</Kbd></>} />
+           <Hint label={selectedActionLabel} keys={<Kbd>↵</Kbd>} />
+-          <Hint label="Actions" keys={<><Kbd>⌘</Kbd><Kbd>K</Kbd></>} />
++          <button type="button" aria-label="Actions" onClick={() => onOpenActions(filteredRows[selected]?.actionIds)}><Hint label="Actions" keys={<><Kbd>⌘</Kbd><Kbd>K</Kbd></>} /></button>
+           <Hint label="Back" keys={<Kbd>Esc</Kbd>} />
+         </HintBar>
+       </div>
+--- a/src/renderer/src/raycast-api/index.tsx
++++ b/src/renderer/src/raycast-api/index.tsx
+@@ -30,7 +30,8 @@
+   actions: ExtensionRuntimeAction[]
+   actionNotice?: { message: string; tone: 'success' | 'error' } | null
+   onBack: () => void
+-  onSearchTextChanged: (searchText: string) => Promise<void> | void
++  onSearchTextChanged: (searchText: string, inputRevision?: number) => Promise<void> | void
++  onSearchInput?: (searchText: string, inputRevision: number) => void
+   onLoadMore: () => Promise<void> | void
+   onInvokeAction: (actionId: string, formValues?: Record<string, unknown>) => Promise<void> | void
+ }
+@@ -58,6 +59,7 @@
+     actionNotice,
+     onBack,
+     onSearchTextChanged,
++    onSearchInput,
+     onLoadMore,
+     onInvokeAction,
+   } = props
+@@ -86,10 +88,13 @@
+   )
+   const actionRegistry = useMemo(() => ({ actions }), [actions])
+   const overlayActions = useMemo(() => {
+-    if (!actionFilterIds) return actions
++    const accessory = root.props?.searchBarAccessory as ExtensionRuntimeNode | undefined
++    const controlId = accessory?.type === 'List.Dropdown' ? accessory.props?.actionId : undefined
++    const visibleActions = actions.filter(action => action.id !== controlId)
++    if (!actionFilterIds) return visibleActions
+     const visibleIds = new Set(actionFilterIds)
+-    return actions.filter((action) => visibleIds.has(action.id))
+-  }, [actionFilterIds, actions])
++    return visibleActions.filter((action) => visibleIds.has(action.id))
++  }, [actionFilterIds, actions, root.props?.searchBarAccessory])
+ 
+   const navApi = useMemo(
+     () => ({
+@@ -192,6 +197,8 @@
+               actions={actions}
+               onOpenActions={openActions}
+               onSearchTextChanged={onSearchTextChanged}
++              onSearchInput={onSearchInput}
++              storageKey={`${extensionId}:${commandName}`}
+               onLoadMore={onLoadMore}
+             />
+           )}
+--- a/src/renderer/ExtensionRuntimeView.tsx
++++ b/src/renderer/ExtensionRuntimeView.tsx
+@@ -427,6 +427,28 @@
+   const [error, setError] = useState<string | null>(null)
+   const [actionNotice, setActionNotice] = useState<ActionNotice | null>(null)
+   const searchRequestSeq = useRef(0)
++  const clientInputRevision = useRef(0)
++  const nativeModelRevision = useRef(0)
++  const acceptModel = useCallback((result: {root: ExtensionRuntimeNode}) => {
++    if (result.root.props?.__clientOwnedInput !== true) return true
++    const revision = result.root.props.__modelRevision
++    if (typeof revision !== 'number' || revision < nativeModelRevision.current) return false
++    nativeModelRevision.current = revision
++    return true
++  }, [])
++  const handleSearchInput = useCallback((text: string, revision: number) => {
++    clientInputRevision.current = revision
++    searchRequestSeq.current += 1
++    const owner = currentSession.current
++    // Revoke native work immediately, then promote this same input revision
++    // to a request after the List's existing debounce has elapsed.
++    void window.tezbar.extensionSearchTextChanged({sessionId: state.sessionId, searchText: text, inputRevision: revision, draftOnly: true}).then(result => {
++      if (currentSession.current !== owner || revision !== clientInputRevision.current) return
++      if (result.ok && result.mode === 'view' && result.root.props?.__inputRevision === revision && acceptModel(result)) setState(fromRunResult(result))
++    }).catch(error => {
++      if (currentSession.current === owner && revision === clientInputRevision.current) setError(error instanceof Error ? error.message : String(error))
++    })
++  }, [state.sessionId, acceptModel])
+   const currentSession = useRef<string | null>(null)
+   const sessionOwner = `${state.sessionId}:${state.generation ?? ''}`
+   currentSession.current = sessionOwner
+@@ -467,6 +489,8 @@
+   useEffect(() => {
+     currentSession.current = `${initial.sessionId}:${initial.generation ?? ''}`
+     searchRequestSeq.current += 1
++    clientInputRevision.current = 0
++    nativeModelRevision.current = typeof initial.root.props?.__modelRevision === 'number' ? initial.root.props.__modelRevision : 0
+     setState(fromRunResult(initial))
+     setError(null)
+   }, [initial])
+@@ -508,8 +532,10 @@
+       subscribeVisibility: window.tezbar.onWindowVisibility,
+       refresh: async () => {
+         try {
++          const startedRevision = clientInputRevision.current
+           const result = await window.tezbar.extensionRefreshSession({ sessionId: state.sessionId })
+-          if (cancelled || (result.ok && result.mode === 'unchanged')) return
++          if (cancelled || startedRevision !== clientInputRevision.current || (result.ok && result.mode === 'unchanged')) return
++          if (result.ok && result.mode === 'view' && result.root.props?.__clientOwnedInput === true && clientInputRevision.current > 0 && result.root.props.__inputRevision !== clientInputRevision.current) return
+           if (!result.ok) {
+             setError(result.message)
+             return
+@@ -519,6 +545,7 @@
+             return
+           }
+           if (result.sessionId !== state.sessionId || result.generation !== state.generation) return
++          if (!acceptModel(result)) return
+           setState(fromRunResult(result))
+         } catch (error) {
+           if (!cancelled) setError(error instanceof Error ? error.message : String(error))
+@@ -532,15 +559,17 @@
+   }, [state.sessionId, state.generation, state.refreshMs])
+ 
+   const handleSearchTextChanged = useCallback(
+-    async (searchText: string) => {
++    async (searchText: string, inputRevision?: number) => {
++      if (inputRevision !== undefined && inputRevision !== clientInputRevision.current) return
+       const requestSeq = searchRequestSeq.current + 1
+       searchRequestSeq.current = requestSeq
+-      console.log(`[RuntimeView] Search text changed, sending to sandbox: "${searchText}"`)
+       const result = await window.tezbar.extensionSearchTextChanged({
+         sessionId: state.sessionId,
+         searchText,
++        inputRevision,
+       })
+       if (requestSeq !== searchRequestSeq.current || currentSession.current !== sessionOwner) return
++      if ((result as {mode?: string}).mode === 'unchanged') return
+ 
+       if (!result.ok) {
+         console.error('[RuntimeView] Search failed:', result.message)
+@@ -557,6 +586,7 @@
+       console.log(
+         `[RuntimeView] Search returned view with root type="${result.root.type}", ${result.root.children?.length ?? 0} children`
+       )
++      if (!acceptModel(result)) return
+       setState({
+         refreshMs: result.refreshMs,
+         generation: result.generation,
+@@ -615,7 +645,9 @@
+           />
+         ) : (
+           <ExtensionRuntimeSurface
++            key={`${state.sessionId}:${state.generation ?? ''}`}
+             sessionId={state.sessionId}
++            onSearchInput={handleSearchInput}
+             title={state.title}
+             extensionId={state.extensionId}
+             commandName={state.commandName}
+@@ -631,19 +663,22 @@
+               if (isFormSurface && invokedAction?.kind === 'submit-form') {
+                 showActionNotice(`Working · ${invokedAction.title}…`, true)
+               }
++              const startedRevision = clientInputRevision.current
+               const result = await window.tezbar.extensionInvokeAction({
+                 sessionId: state.sessionId,
+                 actionId,
+                 formValues,
+               })
+ 
+-              if (currentSession.current !== sessionOwner) return
++              if (currentSession.current !== sessionOwner || startedRevision !== clientInputRevision.current) return
++              if ((result as {mode?: string}).mode === 'unchanged') return
+               if (!result.ok) {
+                 setError(result.message)
+                 showActionFailure(result.message)
+                 return
+               }
+ 
++              if (result.mode === 'view' && !acceptModel(result)) return
+               const effectNoticeValue = effectNotice(result.effects)
+               const messageNotice = result.message?.trim()
+                 ? {
+--- a/src/shared/desktop-api.ts
++++ b/src/shared/desktop-api.ts
+@@ -149,6 +149,8 @@
+     formValues?: Record<string, unknown>
+   }) => Promise<ExtensionInvokeActionResult>
+   extensionSearchTextChanged: (payload: {
++    inputRevision?: number
++    draftOnly?: boolean
+     sessionId: string
+     searchText: string
+   }) => Promise<ExtensionSearchTextChangedResult>
+--- a/src/shared/extensionRuntime.ts
++++ b/src/shared/extensionRuntime.ts
+@@ -143,6 +143,8 @@
+     }
+ 
+ export type ExtensionSearchTextChangedRequest = {
++  inputRevision?: number
++    draftOnly?: boolean
+   sessionId: string
+   searchText: string
+ }
