@@ -1,0 +1,11 @@
+function matchesListShortcut(event: React.KeyboardEvent<HTMLDivElement>, shortcut: ExtensionRuntimeAction['shortcut'], windows: boolean): boolean {
+  if (!shortcut?.key || event.repeat) return false
+  const modifiers = new Set(shortcut.modifiers ?? [])
+  const command = modifiers.has('cmd') || modifiers.has('command')
+  const meta = modifiers.has('meta') || (!windows && command)
+  const control = modifiers.has('ctrl') || modifiers.has('control') || (windows && command)
+  const alt = modifiers.has('alt') || modifiers.has('opt') || modifiers.has('option')
+  return event.key.toLowerCase() === shortcut.key.toLowerCase()
+    && event.metaKey === meta && event.ctrlKey === control
+    && event.altKey === alt && event.shiftKey === modifiers.has('shift')
+}

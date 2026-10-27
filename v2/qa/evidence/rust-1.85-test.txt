@@ -1,0 +1,47 @@
+   Compiling mastodon-search-v2 v2.0.0 (/Users/almat/Desktop/code/Tezbar APP/rust-extension-ports/mastodon-search/v2)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.55s
+     Running unittests src/lib.rs (.work/target/debug/deps/mastodon_search_v2-be63ecbaa198c2ce)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (.work/target/debug/deps/mastodon_search-ef42045081a71775)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/core.rs (.work/target/debug/deps/core-31a6888c6abd4d55)
+
+running 6 tests
+test strict_closed_effect_acknowledgements ... ok
+test js_length_and_untrimmed_drafts ... ok
+test exact_locked_mime_vectors ... ok
+test real_source_account_and_hashtag_mapping ... ok
+test exact_source_whatwg_urls ... ok
+test malformed_responses_fail_without_partial_rows ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running tests/lifecycle.rs (.work/target/debug/deps/lifecycle-088a53f4c4d60878)
+
+running 1 test
+test scope_drop_after_handler_return_releases_140_then_accepts_128_live ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+     Running tests/producers.rs (.work/target/debug/deps/producers-2ad5d8eb12fefdfa)
+
+running 2 tests
+test actual_complete_clipboard_producer_returns_closed_ok_and_read_is_string ... ok
+test actual_complete_open_producer_has_frozen_target_and_closed_ack ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests mastodon_search_v2
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

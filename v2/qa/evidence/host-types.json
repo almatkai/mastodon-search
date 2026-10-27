@@ -1,0 +1,6 @@
+{
+  "baseline": [],
+  "proposed": [],
+  "newDiagnostics": [],
+  "scope": "complete actual renderer bodies, typed host seams; not a full host build"
+}

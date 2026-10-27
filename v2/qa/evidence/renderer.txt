@@ -1,0 +1,48 @@
+ok 1 - baseline actual List input reconciliation
+ok 2 - baseline actual controlled dropdown selection
+ok 3 - baseline parser preserves order/string titles
+ok 4 - baseline icon mask preservation
+ok 5 - baseline accessory tooltip preservation
+ok 6 - baseline actual avatar rendering path
+ok 7 - baseline actual accessory render tooltip
+ok 8 - baseline actual empty-state rendering
+ok 9 - corrected actual List input reconciliation
+ok 10 - input ownership fences at DOM input time before debounce
+ok 11 - invalid draft stays visible in client input while native work is revoked
+ok 12 - corrected actual controlled dropdown selection
+ok 13 - corrected parser preserves order/string titles
+ok 14 - corrected icon mask preservation
+ok 15 - corrected accessory tooltip preservation
+ok 16 - corrected actual avatar rendering path
+ok 17 - corrected actual accessory render tooltip
+ok 18 - corrected actual empty-state rendering
+ok 19 - baseline actual parent rejects A response after B input
+ok 20 - baseline actual parent fences late effect view
+ok 21 - baseline actual parent fences old refresh revision
+ok 22 - baseline actual parent keeps native model revisions independent from client input
+ok 23 - corrected actual parent rejects A response after B input
+ok 24 - corrected actual parent fences late effect view
+ok 25 - corrected actual parent fences old refresh revision
+ok 26 - corrected actual parent keeps native model revisions independent from client input
+ok 27 - actual parent surface hides dropdown plumbing from source action menu
+ok 28 - actual parent surface still routes dropdown value changes
+ok 29 - old debounce cannot borrow a newly typed client revision before effect cleanup
+ok 30 - current debounce freezes its own input/revision pair
+ok 31 - actual selected-row Actions control exposes manual retry with retained rows
+ok 32 - actual selected-row Copy Profile URL shortcut on MacIntel
+ok 33 - actual selected-row Copy Handle shortcut on MacIntel
+ok 34 - actual shortcut repeat is inert on MacIntel
+ok 35 - actual selected-row Copy Profile URL shortcut on Win32
+ok 36 - actual selected-row Copy Handle shortcut on Win32
+ok 37 - actual shortcut repeat is inert on Win32
+ok 38 - actual generic storeValue restores saved valid dropdown via read-only change control
+ok 39 - clicking selected dropdown value emits no redundant change
+ok 40 - actual generic storeValue writes only selected kind
+ok 41 - actual generic image preflight reads original PNG dimensions
+ok 42 - actual image preflight rejects unknown/truncated bytes
+ok 43 - actual bounded image loader accepts owned raster via replaced producer
+ok 44 - actual image loader omits credentials/referrer/cache/redirects and releases URL
+ok 45 - actual bounded avatar loader rejects http before creating image URL
+ok 46 - actual bounded avatar loader rejects declared-oversized before creating image URL
+ok 47 - actual bounded avatar loader rejects stream-oversized before creating image URL
+ok 48 - actual bounded avatar loader rejects huge-dimensions before creating image URL

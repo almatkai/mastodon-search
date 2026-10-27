@@ -27,3 +27,5 @@ Written by [Dave Verwer](https://daveverwer.com) and [Toby Herbert](https://toby
   <source srcset="https://github.com/daveverwer/MastodonSearch-Raycast/blob/main/.readme-images/hashtag-search~dark.png?raw=true" media="(prefers-color-scheme: dark)">
   <img src="https://github.com/daveverwer/MastodonSearch-Raycast/blob/main/.readme-images/hashtag-search~light.png?raw=true" alt="Hashtag search results displayed by the extension">
 </picture>
+
+Standalone Rust version: [V2 implementation and verification](v2/README.md).

@@ -1,0 +1,6 @@
+{
+  "count": 20,
+  "schemaPin": "ea100cee3f69711de12485ba061950c5fc65258f",
+  "validator": "ajv 8.17.1 draft2020 full schema + formats",
+  "sourceArtifactsEmpty": true
+}

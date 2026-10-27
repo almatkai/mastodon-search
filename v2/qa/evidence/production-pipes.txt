@@ -1,0 +1,16 @@
+ok 1 - packaged default People/empty model is a real SDK view
+ok 2 - packaged kind A/B/A, separate native/client revisions
+ok 3 - packaged stale control revision inert
+ok 4 - packaged foreign-session controls inert
+ok 5 - packaged nonstring draft is visible and effect-free
+ok 6 - packaged oversized draft is visible
+ok 7 - packaged invalid instance route fails locally without requests
+ok 8 - packaged input-time draft acknowledges current client revision
+ok 9 - packaged empty draft promotion does not fetch
+ok 10 - packaged unsupported operation rejects
+ok 11 - packaged unsupported operation rejects
+ok 12 - packaged unknown effects are inert
+ok 13 - packaged 128-session capacity explicit
+ok 14 - packaged full applicable no-network suite emits no OS effect
+ok 15 - packaged shutdown disposes 128 sessions
+ok 16 - packaged EOF exits with live session

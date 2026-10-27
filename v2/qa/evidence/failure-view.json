@@ -1,0 +1,141 @@
+{
+  "actions": [
+    {
+      "id": "m:1:273",
+      "kind": "action",
+      "title": "Visit Profile"
+    },
+    {
+      "id": "m:1:274",
+      "kind": "action",
+      "shortcut": {
+        "key": "c",
+        "modifiers": [
+          "cmd",
+          "shift"
+        ]
+      },
+      "title": "Copy Profile URL"
+    },
+    {
+      "id": "m:1:275",
+      "kind": "action",
+      "shortcut": {
+        "key": "c",
+        "modifiers": [
+          "cmd",
+          "shift",
+          "opt"
+        ]
+      },
+      "title": "Copy Handle"
+    },
+    {
+      "id": "m:1:276",
+      "kind": "action",
+      "title": "Retry Search"
+    },
+    {
+      "id": "m:1:kind",
+      "kind": "action",
+      "title": "Search for\u2026"
+    }
+  ],
+  "message": "Search request failed (HTTP 429).",
+  "mode": "view",
+  "ok": true,
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "props": {
+              "accessories": [
+                {
+                  "icon": "Icon.ComputerChip",
+                  "text": "Bot Account",
+                  "tooltip": "Account is a bot"
+                },
+                {
+                  "icon": "Icon.TwoPeople",
+                  "text": "42",
+                  "tooltip": "Number of followers"
+                }
+              ],
+              "actionIds": [
+                "m:1:273",
+                "m:1:274",
+                "m:1:275",
+                "m:1:276"
+              ],
+              "icon": {
+                "mask": "roundedRectangle",
+                "source": "https://avatar.invalid/a.png"
+              },
+              "id": "account:0",
+              "sourceId": "109912345678901234",
+              "subtitle": "@local@127.0.0.1:50818",
+              "title": "name:B"
+            },
+            "type": "List.Item"
+          }
+        ],
+        "props": {
+          "title": "People"
+        },
+        "type": "List.Section"
+      },
+      {
+        "children": [],
+        "props": {
+          "title": "Hashtags"
+        },
+        "type": "List.Section"
+      },
+      {
+        "props": {
+          "title": "No results"
+        },
+        "type": "List.EmptyView"
+      }
+    ],
+    "props": {
+      "__clientOwnedInput": true,
+      "__draftOnly": false,
+      "__hasServerSearch": true,
+      "__inputRevision": null,
+      "__modelRevision": 57,
+      "isLoading": false,
+      "searchBarAccessory": {
+        "children": [
+          {
+            "props": {
+              "title": "People",
+              "value": "accounts"
+            },
+            "type": "List.Dropdown.Item"
+          },
+          {
+            "props": {
+              "title": "Hashtags",
+              "value": "hashtags"
+            },
+            "type": "List.Dropdown.Item"
+          }
+        ],
+        "props": {
+          "actionId": "m:1:kind",
+          "storeValue": true,
+          "tooltip": "Search for&hellip;",
+          "value": "accounts"
+        },
+        "type": "List.Dropdown"
+      },
+      "searchBarPlaceholder": "Search Mastodon",
+      "searchText": "error-refresh",
+      "throttle": true
+    },
+    "type": "List"
+  },
+  "title": "Search Mastodon"
+}

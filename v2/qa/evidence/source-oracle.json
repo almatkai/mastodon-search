@@ -1,0 +1,638 @@
+{
+  "sourceHead": "dd73024af23ed7d716421592aac26c323500206d",
+  "utilsVersion": "2.3.0",
+  "payload": {
+    "accounts": [
+      {
+        "id": "109912345678901234",
+        "display_name": "Synthetic Person",
+        "acct": "local",
+        "avatar": "https://avatar.invalid/a.png",
+        "url": "https://social.invalid/@local",
+        "followers_count": 42,
+        "bot": true
+      },
+      {
+        "id": 7,
+        "display_name": "",
+        "acct": "remote@else.invalid",
+        "avatar": "https://avatar.invalid/a.png",
+        "url": "https://social.invalid/@local",
+        "followers_count": 1e+21,
+        "bot": false
+      },
+      {
+        "id": "109912345678901234",
+        "display_name": "Synthetic Person",
+        "acct": "local",
+        "avatar": "https://avatar.invalid/a.png",
+        "url": "https://social.invalid/@local",
+        "followers_count": 42,
+        "bot": true
+      }
+    ],
+    "hashtags": [
+      {
+        "name": "rust",
+        "url": "https://social.invalid/tags/rust"
+      },
+      {
+        "name": "rust",
+        "url": "https://social.invalid/tags/rust2"
+      }
+    ]
+  },
+  "rows": [
+    {
+      "type": "List.Item",
+      "title": "Synthetic Person",
+      "subtitle": "@local@mastodon.social",
+      "icon": {
+        "source": "https://avatar.invalid/a.png",
+        "mask": "roundedRectangle"
+      },
+      "accessories": [
+        {
+          "icon": "Icon.ComputerChip",
+          "tooltip": "Account is a bot",
+          "text": "Bot Account"
+        },
+        {
+          "icon": "Icon.TwoPeople",
+          "tooltip": "Number of followers",
+          "text": "42"
+        }
+      ],
+      "actions": [
+        {
+          "type": "Action.OpenInBrowser",
+          "title": "Visit Profile",
+          "url": "https://social.invalid/@local"
+        },
+        {
+          "type": "Action.CopyToClipboard",
+          "title": "Copy Profile URL",
+          "content": "https://social.invalid/@local",
+          "shortcut": {
+            "modifiers": [
+              "cmd",
+              "shift"
+            ],
+            "key": "c"
+          }
+        },
+        {
+          "type": "Action.CopyToClipboard",
+          "title": "Copy Handle",
+          "content": "@local@mastodon.social",
+          "shortcut": {
+            "modifiers": [
+              "cmd",
+              "shift",
+              "opt"
+            ],
+            "key": "c"
+          }
+        }
+      ]
+    },
+    {
+      "type": "List.Item",
+      "title": "",
+      "subtitle": "@remote@else.invalid",
+      "icon": {
+        "source": "https://avatar.invalid/a.png",
+        "mask": "roundedRectangle"
+      },
+      "accessories": [
+        {
+          "icon": "Icon.TwoPeople",
+          "tooltip": "Number of followers",
+          "text": "1e+21"
+        }
+      ],
+      "actions": [
+        {
+          "type": "Action.OpenInBrowser",
+          "title": "Visit Profile",
+          "url": "https://social.invalid/@local"
+        },
+        {
+          "type": "Action.CopyToClipboard",
+          "title": "Copy Profile URL",
+          "content": "https://social.invalid/@local",
+          "shortcut": {
+            "modifiers": [
+              "cmd",
+              "shift"
+            ],
+            "key": "c"
+          }
+        },
+        {
+          "type": "Action.CopyToClipboard",
+          "title": "Copy Handle",
+          "content": "@remote@else.invalid",
+          "shortcut": {
+            "modifiers": [
+              "cmd",
+              "shift",
+              "opt"
+            ],
+            "key": "c"
+          }
+        }
+      ]
+    },
+    {
+      "type": "List.Item",
+      "title": "Synthetic Person",
+      "subtitle": "@local@mastodon.social",
+      "icon": {
+        "source": "https://avatar.invalid/a.png",
+        "mask": "roundedRectangle"
+      },
+      "accessories": [
+        {
+          "icon": "Icon.ComputerChip",
+          "tooltip": "Account is a bot",
+          "text": "Bot Account"
+        },
+        {
+          "icon": "Icon.TwoPeople",
+          "tooltip": "Number of followers",
+          "text": "42"
+        }
+      ],
+      "actions": [
+        {
+          "type": "Action.OpenInBrowser",
+          "title": "Visit Profile",
+          "url": "https://social.invalid/@local"
+        },
+        {
+          "type": "Action.CopyToClipboard",
+          "title": "Copy Profile URL",
+          "content": "https://social.invalid/@local",
+          "shortcut": {
+            "modifiers": [
+              "cmd",
+              "shift"
+            ],
+            "key": "c"
+          }
+        },
+        {
+          "type": "Action.CopyToClipboard",
+          "title": "Copy Handle",
+          "content": "@local@mastodon.social",
+          "shortcut": {
+            "modifiers": [
+              "cmd",
+              "shift",
+              "opt"
+            ],
+            "key": "c"
+          }
+        }
+      ]
+    },
+    {
+      "type": "List.Item",
+      "title": "rust",
+      "icon": "Icon.Hashtag",
+      "actions": [
+        {
+          "type": "Action.OpenInBrowser",
+          "title": "Visit Hashtag",
+          "url": "https://social.invalid/tags/rust"
+        }
+      ]
+    },
+    {
+      "type": "List.Item",
+      "title": "rust",
+      "icon": "Icon.Hashtag",
+      "actions": [
+        {
+          "type": "Action.OpenInBrowser",
+          "title": "Visit Hashtag",
+          "url": "https://social.invalid/tags/rust2"
+        }
+      ]
+    }
+  ],
+  "urlVectors": [
+    {
+      "instance": "mastodon.social",
+      "query": "a&b=2",
+      "raw": "https://mastodon.social/api/v2/search?type=accounts&q=a&b=2",
+      "url": "https://mastodon.social/api/v2/search?type=accounts&q=a&b=2"
+    },
+    {
+      "instance": "mastodon.social",
+      "query": "a+b",
+      "raw": "https://mastodon.social/api/v2/search?type=accounts&q=a+b",
+      "url": "https://mastodon.social/api/v2/search?type=accounts&q=a+b"
+    },
+    {
+      "instance": "mastodon.social",
+      "query": "#tag",
+      "raw": "https://mastodon.social/api/v2/search?type=accounts&q=#tag",
+      "url": "https://mastodon.social/api/v2/search?type=accounts&q="
+    },
+    {
+      "instance": "mastodon.social",
+      "query": "%",
+      "raw": "https://mastodon.social/api/v2/search?type=accounts&q=%",
+      "url": "https://mastodon.social/api/v2/search?type=accounts&q=%"
+    },
+    {
+      "instance": "mastodon.social",
+      "query": "a b",
+      "raw": "https://mastodon.social/api/v2/search?type=accounts&q=a b",
+      "url": "https://mastodon.social/api/v2/search?type=accounts&q=a%20b"
+    },
+    {
+      "instance": "mastodon.social",
+      "query": "\t",
+      "raw": "https://mastodon.social/api/v2/search?type=accounts&q=\t",
+      "url": "https://mastodon.social/api/v2/search?type=accounts&q="
+    },
+    {
+      "instance": "mastodon.social",
+      "query": "\n",
+      "raw": "https://mastodon.social/api/v2/search?type=accounts&q=\n",
+      "url": "https://mastodon.social/api/v2/search?type=accounts&q="
+    },
+    {
+      "instance": "mastodon.social",
+      "query": "Русский 😀",
+      "raw": "https://mastodon.social/api/v2/search?type=accounts&q=Русский 😀",
+      "url": "https://mastodon.social/api/v2/search?type=accounts&q=%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9%20%F0%9F%98%80"
+    },
+    {
+      "instance": "mastodon.social",
+      "query": " leading ",
+      "raw": "https://mastodon.social/api/v2/search?type=accounts&q= leading ",
+      "url": "https://mastodon.social/api/v2/search?type=accounts&q=%20leading"
+    },
+    {
+      "instance": "mastodon.social",
+      "query": "x?y=1",
+      "raw": "https://mastodon.social/api/v2/search?type=accounts&q=x?y=1",
+      "url": "https://mastodon.social/api/v2/search?type=accounts&q=x?y=1"
+    },
+    {
+      "instance": "host.invalid:8443",
+      "query": "a&b=2",
+      "raw": "https://host.invalid:8443/api/v2/search?type=accounts&q=a&b=2",
+      "url": "https://host.invalid:8443/api/v2/search?type=accounts&q=a&b=2"
+    },
+    {
+      "instance": "host.invalid:8443",
+      "query": "a+b",
+      "raw": "https://host.invalid:8443/api/v2/search?type=accounts&q=a+b",
+      "url": "https://host.invalid:8443/api/v2/search?type=accounts&q=a+b"
+    },
+    {
+      "instance": "host.invalid:8443",
+      "query": "#tag",
+      "raw": "https://host.invalid:8443/api/v2/search?type=accounts&q=#tag",
+      "url": "https://host.invalid:8443/api/v2/search?type=accounts&q="
+    },
+    {
+      "instance": "host.invalid:8443",
+      "query": "%",
+      "raw": "https://host.invalid:8443/api/v2/search?type=accounts&q=%",
+      "url": "https://host.invalid:8443/api/v2/search?type=accounts&q=%"
+    },
+    {
+      "instance": "host.invalid:8443",
+      "query": "a b",
+      "raw": "https://host.invalid:8443/api/v2/search?type=accounts&q=a b",
+      "url": "https://host.invalid:8443/api/v2/search?type=accounts&q=a%20b"
+    },
+    {
+      "instance": "host.invalid:8443",
+      "query": "\t",
+      "raw": "https://host.invalid:8443/api/v2/search?type=accounts&q=\t",
+      "url": "https://host.invalid:8443/api/v2/search?type=accounts&q="
+    },
+    {
+      "instance": "host.invalid:8443",
+      "query": "\n",
+      "raw": "https://host.invalid:8443/api/v2/search?type=accounts&q=\n",
+      "url": "https://host.invalid:8443/api/v2/search?type=accounts&q="
+    },
+    {
+      "instance": "host.invalid:8443",
+      "query": "Русский 😀",
+      "raw": "https://host.invalid:8443/api/v2/search?type=accounts&q=Русский 😀",
+      "url": "https://host.invalid:8443/api/v2/search?type=accounts&q=%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9%20%F0%9F%98%80"
+    },
+    {
+      "instance": "host.invalid:8443",
+      "query": " leading ",
+      "raw": "https://host.invalid:8443/api/v2/search?type=accounts&q= leading ",
+      "url": "https://host.invalid:8443/api/v2/search?type=accounts&q=%20leading"
+    },
+    {
+      "instance": "host.invalid:8443",
+      "query": "x?y=1",
+      "raw": "https://host.invalid:8443/api/v2/search?type=accounts&q=x?y=1",
+      "url": "https://host.invalid:8443/api/v2/search?type=accounts&q=x?y=1"
+    },
+    {
+      "instance": "host.invalid/base/",
+      "query": "a&b=2",
+      "raw": "https://host.invalid/base//api/v2/search?type=accounts&q=a&b=2",
+      "url": "https://host.invalid/base//api/v2/search?type=accounts&q=a&b=2"
+    },
+    {
+      "instance": "host.invalid/base/",
+      "query": "a+b",
+      "raw": "https://host.invalid/base//api/v2/search?type=accounts&q=a+b",
+      "url": "https://host.invalid/base//api/v2/search?type=accounts&q=a+b"
+    },
+    {
+      "instance": "host.invalid/base/",
+      "query": "#tag",
+      "raw": "https://host.invalid/base//api/v2/search?type=accounts&q=#tag",
+      "url": "https://host.invalid/base//api/v2/search?type=accounts&q="
+    },
+    {
+      "instance": "host.invalid/base/",
+      "query": "%",
+      "raw": "https://host.invalid/base//api/v2/search?type=accounts&q=%",
+      "url": "https://host.invalid/base//api/v2/search?type=accounts&q=%"
+    },
+    {
+      "instance": "host.invalid/base/",
+      "query": "a b",
+      "raw": "https://host.invalid/base//api/v2/search?type=accounts&q=a b",
+      "url": "https://host.invalid/base//api/v2/search?type=accounts&q=a%20b"
+    },
+    {
+      "instance": "host.invalid/base/",
+      "query": "\t",
+      "raw": "https://host.invalid/base//api/v2/search?type=accounts&q=\t",
+      "url": "https://host.invalid/base//api/v2/search?type=accounts&q="
+    },
+    {
+      "instance": "host.invalid/base/",
+      "query": "\n",
+      "raw": "https://host.invalid/base//api/v2/search?type=accounts&q=\n",
+      "url": "https://host.invalid/base//api/v2/search?type=accounts&q="
+    },
+    {
+      "instance": "host.invalid/base/",
+      "query": "Русский 😀",
+      "raw": "https://host.invalid/base//api/v2/search?type=accounts&q=Русский 😀",
+      "url": "https://host.invalid/base//api/v2/search?type=accounts&q=%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9%20%F0%9F%98%80"
+    },
+    {
+      "instance": "host.invalid/base/",
+      "query": " leading ",
+      "raw": "https://host.invalid/base//api/v2/search?type=accounts&q= leading ",
+      "url": "https://host.invalid/base//api/v2/search?type=accounts&q=%20leading"
+    },
+    {
+      "instance": "host.invalid/base/",
+      "query": "x?y=1",
+      "raw": "https://host.invalid/base//api/v2/search?type=accounts&q=x?y=1",
+      "url": "https://host.invalid/base//api/v2/search?type=accounts&q=x?y=1"
+    },
+    {
+      "instance": "host.invalid/path?x=1",
+      "query": "a&b=2",
+      "raw": "https://host.invalid/path?x=1/api/v2/search?type=accounts&q=a&b=2",
+      "url": "https://host.invalid/path?x=1/api/v2/search?type=accounts&q=a&b=2"
+    },
+    {
+      "instance": "host.invalid/path?x=1",
+      "query": "a+b",
+      "raw": "https://host.invalid/path?x=1/api/v2/search?type=accounts&q=a+b",
+      "url": "https://host.invalid/path?x=1/api/v2/search?type=accounts&q=a+b"
+    },
+    {
+      "instance": "host.invalid/path?x=1",
+      "query": "#tag",
+      "raw": "https://host.invalid/path?x=1/api/v2/search?type=accounts&q=#tag",
+      "url": "https://host.invalid/path?x=1/api/v2/search?type=accounts&q="
+    },
+    {
+      "instance": "host.invalid/path?x=1",
+      "query": "%",
+      "raw": "https://host.invalid/path?x=1/api/v2/search?type=accounts&q=%",
+      "url": "https://host.invalid/path?x=1/api/v2/search?type=accounts&q=%"
+    },
+    {
+      "instance": "host.invalid/path?x=1",
+      "query": "a b",
+      "raw": "https://host.invalid/path?x=1/api/v2/search?type=accounts&q=a b",
+      "url": "https://host.invalid/path?x=1/api/v2/search?type=accounts&q=a%20b"
+    },
+    {
+      "instance": "host.invalid/path?x=1",
+      "query": "\t",
+      "raw": "https://host.invalid/path?x=1/api/v2/search?type=accounts&q=\t",
+      "url": "https://host.invalid/path?x=1/api/v2/search?type=accounts&q="
+    },
+    {
+      "instance": "host.invalid/path?x=1",
+      "query": "\n",
+      "raw": "https://host.invalid/path?x=1/api/v2/search?type=accounts&q=\n",
+      "url": "https://host.invalid/path?x=1/api/v2/search?type=accounts&q="
+    },
+    {
+      "instance": "host.invalid/path?x=1",
+      "query": "Русский 😀",
+      "raw": "https://host.invalid/path?x=1/api/v2/search?type=accounts&q=Русский 😀",
+      "url": "https://host.invalid/path?x=1/api/v2/search?type=accounts&q=%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9%20%F0%9F%98%80"
+    },
+    {
+      "instance": "host.invalid/path?x=1",
+      "query": " leading ",
+      "raw": "https://host.invalid/path?x=1/api/v2/search?type=accounts&q= leading ",
+      "url": "https://host.invalid/path?x=1/api/v2/search?type=accounts&q=%20leading"
+    },
+    {
+      "instance": "host.invalid/path?x=1",
+      "query": "x?y=1",
+      "raw": "https://host.invalid/path?x=1/api/v2/search?type=accounts&q=x?y=1",
+      "url": "https://host.invalid/path?x=1/api/v2/search?type=accounts&q=x?y=1"
+    },
+    {
+      "instance": "host.invalid/#frag",
+      "query": "a&b=2",
+      "raw": "https://host.invalid/#frag/api/v2/search?type=accounts&q=a&b=2",
+      "url": "https://host.invalid/"
+    },
+    {
+      "instance": "host.invalid/#frag",
+      "query": "a+b",
+      "raw": "https://host.invalid/#frag/api/v2/search?type=accounts&q=a+b",
+      "url": "https://host.invalid/"
+    },
+    {
+      "instance": "host.invalid/#frag",
+      "query": "#tag",
+      "raw": "https://host.invalid/#frag/api/v2/search?type=accounts&q=#tag",
+      "url": "https://host.invalid/"
+    },
+    {
+      "instance": "host.invalid/#frag",
+      "query": "%",
+      "raw": "https://host.invalid/#frag/api/v2/search?type=accounts&q=%",
+      "url": "https://host.invalid/"
+    },
+    {
+      "instance": "host.invalid/#frag",
+      "query": "a b",
+      "raw": "https://host.invalid/#frag/api/v2/search?type=accounts&q=a b",
+      "url": "https://host.invalid/"
+    },
+    {
+      "instance": "host.invalid/#frag",
+      "query": "\t",
+      "raw": "https://host.invalid/#frag/api/v2/search?type=accounts&q=\t",
+      "url": "https://host.invalid/"
+    },
+    {
+      "instance": "host.invalid/#frag",
+      "query": "\n",
+      "raw": "https://host.invalid/#frag/api/v2/search?type=accounts&q=\n",
+      "url": "https://host.invalid/"
+    },
+    {
+      "instance": "host.invalid/#frag",
+      "query": "Русский 😀",
+      "raw": "https://host.invalid/#frag/api/v2/search?type=accounts&q=Русский 😀",
+      "url": "https://host.invalid/"
+    },
+    {
+      "instance": "host.invalid/#frag",
+      "query": " leading ",
+      "raw": "https://host.invalid/#frag/api/v2/search?type=accounts&q= leading ",
+      "url": "https://host.invalid/"
+    },
+    {
+      "instance": "host.invalid/#frag",
+      "query": "x?y=1",
+      "raw": "https://host.invalid/#frag/api/v2/search?type=accounts&q=x?y=1",
+      "url": "https://host.invalid/"
+    },
+    {
+      "instance": "host.invalid\\base",
+      "query": "a&b=2",
+      "raw": "https://host.invalid\\base/api/v2/search?type=accounts&q=a&b=2",
+      "url": "https://host.invalid/base/api/v2/search?type=accounts&q=a&b=2"
+    },
+    {
+      "instance": "host.invalid\\base",
+      "query": "a+b",
+      "raw": "https://host.invalid\\base/api/v2/search?type=accounts&q=a+b",
+      "url": "https://host.invalid/base/api/v2/search?type=accounts&q=a+b"
+    },
+    {
+      "instance": "host.invalid\\base",
+      "query": "#tag",
+      "raw": "https://host.invalid\\base/api/v2/search?type=accounts&q=#tag",
+      "url": "https://host.invalid/base/api/v2/search?type=accounts&q="
+    },
+    {
+      "instance": "host.invalid\\base",
+      "query": "%",
+      "raw": "https://host.invalid\\base/api/v2/search?type=accounts&q=%",
+      "url": "https://host.invalid/base/api/v2/search?type=accounts&q=%"
+    },
+    {
+      "instance": "host.invalid\\base",
+      "query": "a b",
+      "raw": "https://host.invalid\\base/api/v2/search?type=accounts&q=a b",
+      "url": "https://host.invalid/base/api/v2/search?type=accounts&q=a%20b"
+    },
+    {
+      "instance": "host.invalid\\base",
+      "query": "\t",
+      "raw": "https://host.invalid\\base/api/v2/search?type=accounts&q=\t",
+      "url": "https://host.invalid/base/api/v2/search?type=accounts&q="
+    },
+    {
+      "instance": "host.invalid\\base",
+      "query": "\n",
+      "raw": "https://host.invalid\\base/api/v2/search?type=accounts&q=\n",
+      "url": "https://host.invalid/base/api/v2/search?type=accounts&q="
+    },
+    {
+      "instance": "host.invalid\\base",
+      "query": "Русский 😀",
+      "raw": "https://host.invalid\\base/api/v2/search?type=accounts&q=Русский 😀",
+      "url": "https://host.invalid/base/api/v2/search?type=accounts&q=%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9%20%F0%9F%98%80"
+    },
+    {
+      "instance": "host.invalid\\base",
+      "query": " leading ",
+      "raw": "https://host.invalid\\base/api/v2/search?type=accounts&q= leading ",
+      "url": "https://host.invalid/base/api/v2/search?type=accounts&q=%20leading"
+    },
+    {
+      "instance": "host.invalid\\base",
+      "query": "x?y=1",
+      "raw": "https://host.invalid\\base/api/v2/search?type=accounts&q=x?y=1",
+      "url": "https://host.invalid/base/api/v2/search?type=accounts&q=x?y=1"
+    }
+  ],
+  "mimeVectors": [
+    {
+      "mime": "application/json",
+      "json": true
+    },
+    {
+      "mime": "Application/JSON; charset=utf-8",
+      "json": true
+    },
+    {
+      "mime": "application/activity+json",
+      "json": true
+    },
+    {
+      "mime": "text/json",
+      "json": true
+    },
+    {
+      "mime": "x/a-json-b",
+      "json": true
+    },
+    {
+      "mime": "application/notjson",
+      "json": false
+    },
+    {
+      "mime": "application/json_foo",
+      "json": false
+    },
+    {
+      "mime": "application/json+foo",
+      "json": true
+    },
+    {
+      "mime": "application/json;",
+      "json": true
+    },
+    {
+      "mime": "bogus",
+      "json": false
+    },
+    {
+      "mime": "",
+      "json": false
+    },
+    {
+      "mime": "application/a/json",
+      "json": false
+    }
+  ],
+  "checks": 12
+}

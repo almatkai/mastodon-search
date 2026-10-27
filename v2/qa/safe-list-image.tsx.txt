@@ -1,0 +1,70 @@
+// Generic bounded remote List image support; no extension-specific branches.
+function listImageDimensions(b: Uint8Array): [number, number] | null {
+  const be = (i: number) => ((b[i] * 0x1000000) + (b[i + 1] << 16) + (b[i + 2] << 8) + b[i + 3])
+  const le16 = (i: number) => b[i] | (b[i + 1] << 8)
+  const ascii = (i: number, s: string) => Array.from(s).every((c, n) => b[i + n] === c.charCodeAt(0))
+  if (b.length >= 24 && b[0] === 137 && ascii(1, 'PNG\r\n\x1a\n') && ascii(12, 'IHDR')) return [be(16), be(20)]
+  if (b.length >= 10 && (ascii(0, 'GIF87a') || ascii(0, 'GIF89a'))) return [le16(6), le16(8)]
+  if (b.length >= 30 && ascii(0, 'RIFF') && ascii(8, 'WEBP')) {
+    if (ascii(12, 'VP8X')) return [1 + b[24] + (b[25] << 8) + (b[26] << 16), 1 + b[27] + (b[28] << 8) + (b[29] << 16)]
+    if (ascii(12, 'VP8 ') && b[23] === 157 && b[24] === 1 && b[25] === 42) return [le16(26) & 0x3fff, le16(28) & 0x3fff]
+    if (ascii(12, 'VP8L') && b[20] === 47) return [1 + b[21] + ((b[22] & 63) << 8), 1 + (b[22] >> 6) + (b[23] << 2) + ((b[24] & 15) << 10)]
+  }
+  if (b.length >= 4 && b[0] === 255 && b[1] === 216) {
+    for (let i = 2; i + 8 < b.length;) {
+      if (b[i++] !== 255) return null
+      while (b[i] === 255) i++
+      const marker = b[i++]
+      if (marker === 217 || marker === 218) return null
+      const length = (b[i] << 8) | b[i + 1]
+      if (length < 2 || i + length > b.length) return null
+      if ([192,193,194,195,197,198,199,201,202,203,205,206,207].includes(marker)) return [(b[i + 5] << 8) | b[i + 6], (b[i + 3] << 8) | b[i + 4]]
+      i += length
+    }
+  }
+  return null
+}
+
+function SafeListImage({source, mask}: {source: string; mask?: unknown}): React.ReactNode {
+  const [src, setSrc] = useState<string | null>(null)
+  useEffect(() => {
+    setSrc(null)
+    // Package assets remain local. Remote images use no cookies/referrer/cache,
+    // accept only bounded raster headers, and never follow redirects.
+    if (!/^https?:/i.test(source)) { setSrc(source); return }
+    let objectUrl: string | null = null
+    let stopped = false
+    const controller = new AbortController()
+    const timer = setTimeout(() => controller.abort(), 5000)
+    void (async () => {
+      const url = new URL(source)
+      if (url.protocol !== 'https:' || url.username || url.password) throw new Error('Unsafe image URL')
+      const response = await fetch(url, {signal: controller.signal, credentials:'omit', cache:'no-store', redirect:'error', referrerPolicy:'no-referrer'})
+      if (!response.ok || !response.body) throw new Error('Image unavailable')
+      if (Number(response.headers.get('content-length')) > 2 * 1024 * 1024) throw new Error('Image exceeds size limit')
+      const reader = response.body.getReader()
+      const parts: Uint8Array[] = []
+      let size = 0
+      try {
+        while (true) {
+          const {done, value} = await reader.read()
+          if (done) break
+          size += value.length
+          if (size > 2 * 1024 * 1024) throw new Error('Image exceeds size limit')
+          parts.push(value)
+        }
+      } finally { await reader.cancel(); reader.releaseLock() }
+      const bytes = new Uint8Array(size)
+      let offset = 0
+      for (const part of parts) { bytes.set(part, offset); offset += part.length }
+      const dimensions = listImageDimensions(bytes)
+      if (!dimensions || dimensions.some(n => n < 1 || n > 4096) || dimensions[0] * dimensions[1] > 4_194_304) throw new Error('Image dimensions exceed limits or format unsupported')
+      if (stopped) return
+      objectUrl = URL.createObjectURL(new Blob([bytes]))
+      setSrc(objectUrl)
+    })().catch(() => { controller.abort() }).finally(() => clearTimeout(timer))
+    return () => { stopped = true; clearTimeout(timer); controller.abort(); if (objectUrl) URL.revokeObjectURL(objectUrl) }
+  }, [source])
+  if (!src) return <span className="h-5 w-5 shrink-0" aria-hidden="true" />
+  return <img src={src} alt="" className="h-5 w-5 shrink-0 object-cover" style={{borderRadius: mask === 'roundedRectangle' ? 4 : mask === 'circle' ? '50%' : undefined}} draggable={false} referrerPolicy="no-referrer" />
+}

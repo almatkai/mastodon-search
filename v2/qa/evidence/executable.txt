@@ -1,0 +1,8 @@
+v2/.work/extracted-13_m1720/bin/mastodon-search: Mach-O 64-bit executable arm64
+v2/.work/extracted-13_m1720/bin/mastodon-search:
+	/usr/lib/libiconv.2.dylib (compatibility version 7.0.0, current version 7.0.0)
+	/usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current version 1356.0.0)
+{"commands":["search"],"id":"com.tezbar.native.mastodon-search","protocol":1,"sdkVersion":"0.1.1","version":"2.0.0"}
+$ file v2/.work/extracted-13_m1720/bin/mastodon-search
+$ otool -L v2/.work/extracted-13_m1720/bin/mastodon-search
+$ v2/.work/extracted-13_m1720/bin/mastodon-search --protocol-info
